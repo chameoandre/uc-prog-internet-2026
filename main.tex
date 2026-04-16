@@ -2563,10 +2563,25 @@ title=\textbf{Repositório Oficial do Roteiro 6}
 \subsection{O que é o DOM?}
 O \textbf{DOM (Document Object Model)} é a representação em árvore dos elementos do seu HTML que o navegador cria para que o JavaScript possa interagir com eles.
 
+\subsection{Sintaxe Moderna: A Metáfora da Seta (Arrow Functions)}
+
+\begin{boxDica}
+\textbf{O Atalho do Chef (=>)}
+
+Imagine que escrever código é como pedir um prato em um restaurante. Na forma antiga (\texttt{function}), você tinha que preencher um formulário longo: ``Eu declaro que gostaria de uma função que recebe um pedido e faz tal coisa...''.
+
+Com a \textbf{Arrow Function} (\texttt{=>}), você usa um atalho. O símbolo \texttt{=>} é uma seta que aponta diretamente do **evento** para a **ação**. É como dizer: ``Quando o botão for clicado \textbf{=>} mude a cor''. É mais rápido, limpo e moderno!
+\end{boxDica}
+
 \subsection{Parte 1 — Selecionando e Alterando Elementos}
+
+\begin{boxAtividade}[A Intenção do Código]
+Nesta primeira atividade, vamos ensinar o navegador a ``olhar'' para um título específico e trocar a roupa (cor) dele. O JavaScript vai localizar o ID único e aplicar o novo estilo instantaneamente.
+\end{boxAtividade}
 
 \begin{boxAtividade}[Atividade prática 1 — Seletores e Texto]
 Crie um arquivo \texttt{dom-test.html} e implemente:
+
 
 \begin{boxCodigo}
 \begin{verbatim}
@@ -2601,7 +2616,11 @@ function mudarTexto() {
 
 \subsection{Parte 3 — Criação Dinâmica de Elementos}
 
-Este é um dos conceitos mais importantes: fazer o HTML "aparecer" na tela via código.
+Este é um dos conceitos mais importantes: fazer o HTML ``aparecer'' na tela via código.
+
+\begin{boxAtividade}[A Intenção do Código]
+Vamos criar do zero novos elementos, como se estivéssemos montando peças de LEGO na tela. Em vez de escrever o HTML manualmente, o JavaScript vai fabricar uma nova \texttt{<li>} toda vez que você clicar no botão.
+\end{boxAtividade}
 
 \begin{boxAtividade}[Atividade prática 2 — A Fábrica de Elementos]
 Vamos criar uma lista onde cada clique no botão adiciona um novo item:
@@ -2630,6 +2649,55 @@ botao.addEventListener("click", () => {
 \end{boxCodigo}
 \end{boxAtividade}
 
+\subsection{Parte 4 — Praticando com Estados e Atributos}
+
+\begin{boxAtividade}[A Intenção do Código]
+Agora vamos lidar com números e imagens. No primeiro exemplo, o JavaScript vai guardar um valor na memória (uma variável) e aumentá-lo a cada clique. No segundo, vamos manipular o atributo \texttt{src} para trocar uma imagem por outra, simulando um interruptor.
+\end{boxAtividade}
+
+\begin{boxAtividade}[Atividade prática 3 — O Contador de Cliques]
+Crie um contador simples:
+
+\begin{boxCodigo}
+\begin{verbatim}
+<h2 id="contador">0</h2>
+<button id="btnSoma">Contar +1</button>
+
+<script>
+let valor = 0;
+const display = document.getElementById("contador");
+
+document.getElementById("btnSoma").addEventListener("click", () => {
+    valor++;
+    display.innerText = valor;
+});
+</script>
+\end{verbatim}
+\end{boxCodigo}
+\end{boxAtividade}
+
+\begin{boxAtividade}[Atividade prática 4 — Luz Acesa, Luz Apagada]
+Troque a imagem dinamicamente (use links de imagens de lâmpadas ou placeholders):
+
+\begin{boxCodigo}
+\begin{verbatim}
+<img id="lampada" src="off.png" style="width:100px">
+<button id="btnInterruptor">Ligar/Desligar</button>
+
+<script>
+const img = document.getElementById("lampada");
+let acesa = false;
+
+document.getElementById("btnInterruptor").addEventListener("click", () => {
+    acesa = !acesa;
+    img.src = acesa ? "on.png" : "off.png";
+});
+</script>
+\end{verbatim}
+\end{boxCodigo}
+\end{boxAtividade}
+
+
 \newpage
 
 \section{Roteiro Prático 08 — Requisições Assíncronas e Fetch API}
@@ -2645,7 +2713,25 @@ botao.addEventListener("click", () => {
 \subsection{Entendendo o JSON}
 JSON é o formato padrão de troca de mensagens na web moderna. Ele funciona como um objeto JavaScript formatado como texto.
 
+\subsection{A Metáfora da Esteira de Produção (Fetch Chain)}
+
+\begin{boxDica}
+\textbf{A Esteira de Pedidos}
+
+Imagine uma esteira de produção em uma lanchonete:
+\begin{enumerate}
+    \item \texttt{fetch} [O Pedido] **=>** Você faz o pedido no balcão (internet).
+    \item \texttt{json()} [A Cozinha] **=>** O cozinheiro recebe o pedido bruto e o transforma em um prato pronto para comer (objeto JS).
+    \item \texttt{dados} [O Garçom] **=>** Agora você pode pegar o prato e colocar na mesa (mostrar na tela).
+\end{enumerate}
+O encadeamento de \texttt{.then() => ...} é o movimento da esteira passando o pedido de uma mão para a outra.
+\end{boxDica}
+
 \subsection{Exploração Prática — O Projeto ViaCEP}
+
+\begin{boxAtividade}[A Intenção do Código]
+O fluxo aqui é completo: o usuário digita um CEP **=>** Nós perguntamos aos correios via internet **=>** Eles nos devolvem um pacote (JSON) **=>** Nós abrimos esse pacote e usamos o DOM para mostrar o endereço na tela sem recarregar a página.
+\end{boxAtividade}
 
 \begin{boxAtividade}[Atividade prática 3 — Integração Completa (Fetch + DOM)]
 Integre a busca de CEP no seu projeto:
