@@ -2697,6 +2697,107 @@ document.getElementById("btnInterruptor").addEventListener("click", () => {
 \end{boxCodigo}
 \end{boxAtividade}
 
+\subsection{Laboratório de Mini-Jogos Lúdicos}
+
+\begin{boxAtividade}[A Intenção do Código]
+Para consolidar o aprendizado, vamos transformar o código em jogo! Nestes desafios, o JavaScript deixa de ser apenas uma ferramenta de formulário e passa a gerenciar estados de jogo, aleatoriedade e reações rápidas ao mouse.
+\end{boxAtividade}
+
+\begin{boxAtividade}[Atividade prática 5 — Jogo de Adivinhação]
+\textbf{Conceito:} O computador escolhe um número e você tenta adivinhar. O JS compara os valores e te dá dicas.
+
+\begin{boxCodigo}
+\begin{verbatim}
+<input type="number" id="palpite" placeholder="0 a 10">
+<button id="btnChutar">Chutar!</button>
+<p id="feedback"></p>
+
+<script>
+const segredo = Math.floor(Math.random() * 11);
+const campo = document.getElementById("palpite");
+const texto = document.getElementById("feedback");
+
+document.getElementById("btnChutar").addEventListener("click", () => {
+    const chute = Number(campo.value);
+    if (chute === segredo) {
+        texto.innerText = "🎉 Parabéns! Você acertou!";
+        texto.style.color = "green";
+    } else {
+        texto.innerText = chute > segredo ? "Muito alto!" : "Muito baixo!";
+        texto.style.color = "red";
+    }
+});
+</script>
+\end{verbatim}
+\end{boxCodigo}
+\end{boxAtividade}
+
+\begin{boxAtividade}[Atividade prática 6 — O Botão Fugitivo]
+\textbf{Conceito:} Um botão que foge do mouse! Vamos aprender a mudar a posição absoluta do elemento e contar quantas vezes você falhou.
+
+\begin{boxCodigo}
+\begin{verbatim}
+<p>Erros: <span id="contadorErros">0</span></p>
+<button id="fugitivo" style="position: absolute; left: 50%; top: 50%;">
+    Pegue-me!
+</button>
+
+<script>
+const btn = document.getElementById("fugitivo");
+const placar = document.getElementById("contadorErros");
+let erros = 0;
+
+btn.addEventListener("mouseover", () => {
+    erros++;
+    placar.innerText = erros;
+    
+    // Mudar posição aleatoriamente
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    
+    btn.style.left = `${x}px`;
+    btn.style.top = `${y}px`;
+});
+
+btn.addEventListener("click", () => alert("🎯 Você me pegou!"));
+</script>
+\end{verbatim}
+\end{boxCodigo}
+\end{boxAtividade}
+
+\begin{boxAtividade}[Atividade prática 7 — Jokenpô (Emoji Edition)]
+\textbf{Conceito:} Pedra, Papel e Tesoura. O JavaScript decide o sorteio do computador e compara com a sua escolha.
+
+\begin{boxCodigo}
+\begin{verbatim}
+<button onclick="jogar('🪨')">🪨</button>
+<button onclick="jogar('📄')">📄</button>
+<button onclick="jogar('✂️')">✂️</button>
+<h3 id="resultadoJogo">Escolha um!</h3>
+
+<script>
+const opcoes = ['🪨', '📄', '✂️'];
+
+function jogar(player) {
+    const pc = opcoes[Math.floor(Math.random() * 3)];
+    const res = document.getElementById("resultadoJogo");
+    
+    if (player === pc) {
+        res.innerText = `Empate! Ambos escolheram ${pc}`;
+    } else if (
+        (player === '🪨' && pc === '✂️') ||
+        (player === '📄' && pc === '🪨') ||
+        (player === '✂️' && pc === '📄')
+    ) {
+        res.innerText = `Você Ganhou! ${player} vence ${pc}`;
+    } else {
+        res.innerText = `Você Perdeu! ${pc} vence ${player}`;
+    }
+}
+</script>
+\end{verbatim}
+\end{boxCodigo}
+\end{boxAtividade}
 
 \newpage
 
