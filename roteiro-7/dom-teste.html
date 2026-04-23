@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="titulo">Olá Mundo!</h1>
+    <button onclick="mudarTexto()">Clique Aqui</button>
+
+    <ul id="minhaLista"></ul>
+    <button id="add">Adicionar Item</button>
+
+    <h2 id="contador">0</h2>
+    <button id="btnSoma">Contar +1</button>
+
+
+    <br>
+    <br>
+
+    <img id="lampada" src="lampada-desligada.png" style="width:100px">
+    <button id="btnInterruptor">Ligar/Desligar</button>
+
+    <!-- Jogo de Adivinhação -->
+    <input type="number" id="palpite" placeholder="0 a 10">
+    <button id="btnChutar">Chutar!</button>
+    <p id="feedback"></p>
+
+    <!-- Jogo do Botão Fugitivo -->
+    <p>Erros: <span id="contadorErros">0</span></p>
+    <button id="fugitivo" style="position: absolute; left: 50%; top: 50%;">
+        Pegue-me!
+    </button>
+
+
+    <script>
+        // ============================================================
+        // == DEFINIÇÃO DE VARIÁVEIS E SELETORES DE ELEMENTOS DO DOM ==
+        // ============================================================
+        const lista = document.getElementById("minhaLista");
+        const botao = document.getElementById("add");
+        let valor = 0;
+        const display = document.getElementById("contador");
+        const interruptor = document.getElementById("btnSoma");
+
+        const img = document.getElementById("lampada");
+        let acesa = false;
+        const btnInterruptor = document.getElementById("btnInterruptor");
+
+        const segredo = Math.floor(Math.random() * 11);
+        const campo = document.getElementById("palpite");
+        const texto = document.getElementById("feedback");
+        const btnChutar = document.getElementById("btnChutar");
+
+        const btn = document.getElementById("fugitivo");
+        const placar = document.getElementById("contadorErros");
+        let erros = 0;
+
+        // ============================================================
+
+
+        btn.addEventListener("mouseover", () => {
+            erros++;
+            placar.innerText = erros;
+
+            // Mudar posição aleatoriamente
+            const x = Math.random() * (window.innerWidth - 100); // Subtrai 100 para evitar que o botão fique parcialmente fora da tela
+            const y = Math.random() * (window.innerHeight - 50); // Subtrai 50 para evitar que o botão fique parcialmente fora da tela
+
+            btn.style.left = `${x}px`;
+            btn.style.top = `${y}px`;
+        });
+
+
+
+
+        btnChutar.addEventListener("click", () => {
+            const chute = Number(campo.value);
+            if (chute === segredo) {
+                texto.innerText = " Parabéns! Você acertou!";
+                texto.style.color = "green";
+            } else {
+                texto.innerText = chute > segredo ? "Muito alto!" : "Muito baixo!"; // Exibe se o chute foi alto ou baixo
+                texto.style.color = "red";
+            }
+        });
+
+
+
+
+        btnInterruptor.addEventListener("click", () => {
+            acesa = !acesa;
+            img.src = acesa ? "lampada-acesa.jpg" : "lampada-desligada.png";
+        });
+
+
+
+
+        interruptor.addEventListener("click", () => {
+            valor++; // Incrementa o valor em 1
+            display.innerText = valor; // Atualiza o texto do elemento para mostrar o novo valor
+        });
+
+
+        botao.addEventListener("click", () => {
+            const novoItem = document.createElement("li"); // Cria um novo elemento <li>
+            novoItem.innerText = "Novo Item na Lista"; // Define o texto do novo item    
+            lista.appendChild(novoItem); // Adiciona o novo item à lista
+        });
+
+        function exemplo() { alert("Texto alterado!") }
+
+        function mudarTexto() {
+            const titulo = document.getElementById("titulo"); // Obtém o elemento pelo ID
+            titulo.innerText = "Texto alterado!"; // Altera o texto do elemento
+            titulo.style.color = "blue"; // Altera a cor do texto para azul
+        }
+    </script>
+</body>
+
+</html>

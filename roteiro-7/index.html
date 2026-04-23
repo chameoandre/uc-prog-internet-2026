@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roteiro 07 - Laboratório de DOM</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background-color: #f4f4f9; }
+        .box { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        h2 { color: #003366; border-bottom: 2px solid #003366; padding-bottom: 5px; }
+        #fugitivo { position: absolute; transition: all 0.1s; }
+        .lamp-container { text-align: center; }
+        img { width: 150px; display: block; margin: 10px auto; }
+    </style>
+</head>
+<body>
+
+    <h1>Roteiro 07 — Manipulação da Árvore DOM</h1>
+
+    <!-- ATIVIDADE 1: SELETORES -->
+    <div class="box">
+        <h2>1. Troca de Roupa (Seletores)</h2>
+        <h3 id="titulo">Olá Mundo!</h3>
+        <button onclick="mudarTexto()">Clique Aqui</button>
+    </div>
+
+    <!-- ATIVIDADE 2: FÁBRICA DE ELEMENTOS -->
+    <div class="box">
+        <h2>2. Fábrica de Itens (LEGO)</h2>
+        <ul id="minhaLista"></ul>
+        <button id="add">Adicionar Item</button>
+    </div>
+
+    <!-- ATIVIDADE 3: CONTADOR -->
+    <div class="box">
+        <h2>3. Contador de Cliques</h2>
+        <h3 id="contador">0</h3>
+        <button id="btnSoma">Contar +1</button>
+    </div>
+
+    <!-- ATIVIDADE 4: INTERRUPTOR -->
+    <div class="box">
+        <h2>4. Luz Acesa, Luz Apagada</h2>
+        <div class="lamp-container">
+            <img id="lampada" src="lampada-desligada.png" alt="Lâmpada">
+            <button id="btnInterruptor">Ligar/Desligar</button>
+        </div>
+    </div>
+
+    <!-- JOGO 1: ADIVINHAÇÃO -->
+    <div class="box">
+        <h2>5. Jogo de Adivinhação (0 a 10)</h2>
+        <input type="number" id="palpite" placeholder="Chute um número">
+        <button id="btnChutar">Chutar!</button>
+        <p id="feedback"></p>
+    </div>
+
+    <!-- JOGO 2: BOTÃO FUGITIVO -->
+    <div class="box" style="height: 150px; position: relative;">
+        <h2>6. O Botão Fugitivo</h2>
+        <p>Erros: <span id="contadorErros">0</span></p>
+        <button id="fugitivo">Pegue-me!</button>
+    </div>
+
+    <!-- JOGO 3: JOKENPÔ -->
+    <div class="box">
+        <h2>7. Jokenpô (Emoji Edition)</h2>
+        <button onclick="jogar('PEDRA')">✊ PEDRA</button>
+        <button onclick="jogar('PAPEL')">✋ PAPEL</button>
+        <button onclick="jogar('TESOURA')">✌️ TESOURA</button>
+        <h3 id="resultadoJogo">Escolha um!</h3>
+    </div>
+
+    <script>
+        // 1. Troca de Texto
+        function mudarTexto() {
+            const titulo = document.getElementById("titulo");
+            titulo.innerText = "JavaScript funcionando!";
+            titulo.style.color = "blue";
+        }
+
+        // 2. Fábrica de Elementos
+        const lista = document.getElementById("minhaLista");
+        document.getElementById("add").addEventListener("click", () => {
+            const novoItem = document.createElement("li");
+            novoItem.innerText = "Novo Item na Lista";
+            lista.appendChild(novoItem);
+        });
+
+        // 3. Contador
+        let valor = 0;
+        const display = document.getElementById("contador");
+        document.getElementById("btnSoma").addEventListener("click", () => {
+            valor++;
+            display.innerText = valor;
+        });
+
+        // 4. Interruptor
+        const img = document.getElementById("lampada");
+        let acesa = false;
+        document.getElementById("btnInterruptor").addEventListener("click", () => {
+            acesa = !acesa;
+            img.src = acesa ? "lampada-acesa.jpg" : "lampada-desligada.png";
+        });
+
+        // 5. Adivinhação
+        const segredo = Math.floor(Math.random() * 11);
+        document.getElementById("btnChutar").addEventListener("click", () => {
+            const chute = Number(document.getElementById("palpite").value);
+            const texto = document.getElementById("feedback");
+            if (chute === segredo) {
+                texto.innerText = "Parabéns! Você acertou!";
+                texto.style.color = "green";
+            } else {
+                texto.innerText = chute > segredo ? "Muito alto!" : "Muito baixo!";
+                texto.style.color = "red";
+            }
+        });
+
+        // 6. Botão Fugitivo
+        const btnFugitivo = document.getElementById("fugitivo");
+        const placar = document.getElementById("contadorErros");
+        let erros = 0;
+        btnFugitivo.addEventListener("mouseover", () => {
+            erros++;
+            placar.innerText = erros;
+            const x = Math.random() * (window.innerWidth - 200);
+            const y = Math.random() * 100; // Limitar ao container
+            btnFugitivo.style.left = `${x}px`;
+            btnFugitivo.style.top = `${y + 50}px`;
+        });
+        btnFugitivo.addEventListener("click", () => alert("Você me pegou!"));
+
+        // 7. Jokenpô
+        const opcoes = ['PEDRA', 'PAPEL', 'TESOURA'];
+        function jogar(player) {
+            const pc = opcoes[Math.floor(Math.random() * 3)];
+            const res = document.getElementById("resultadoJogo");
+            if (player === pc) {
+                res.innerText = `Empate! Ambos escolheram ${pc}`;
+            } else if (
+                (player === 'PEDRA' && pc === 'TESOURA') ||
+                (player === 'PAPEL' && pc === 'PEDRA') ||
+                (player === 'TESOURA' && pc === 'PAPEL')
+            ) {
+                res.innerText = `Você Ganhou! ${player} vence ${pc}`;
+            } else {
+                res.innerText = `Você Perdeu! ${pc} vence ${player}`;
+            }
+        }
+    </script>
+</body>
+</html>
