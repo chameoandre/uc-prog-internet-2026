@@ -5,12 +5,12 @@
 % =====================================================
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[brazil]{babel}
+\usepackage[brazil,shorthands=off]{babel}
 \usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
-\usepackage{xcolor}
+\usepackage[table]{xcolor}
 \usepackage{hyperref}
 \usepackage{setspace}
 \usepackage{enumitem}
@@ -104,6 +104,17 @@
     fonttitle=\bfseries,
     arc=2mm,
     boxrule=0.8pt
+}
+
+\newtcolorbox{boxTabela}{
+    colback=cinzaTabela,
+    colframe=pretoTabela,
+    boxrule=0.8pt,
+    arc=2pt,
+    left=4pt,
+    right=4pt,
+    top=4pt,
+    bottom=4pt
 }
 
 % =====================================================
@@ -2676,7 +2687,7 @@ document.getElementById("btnSoma").addEventListener("click", () => {
 \end{boxCodigo}
 \end{boxAtividade}
 
-\begin{boxAtividade}[Atividade prática 4 — Luz Acesa, Luz Apagada]
+\begin{boxAtividade}[Atividade prática 4 — Luz Acesa e Luz Apagada]
 Troque a imagem dinamicamente (use links de imagens de lâmpadas ou placeholders):
 
 \begin{boxCodigo}
