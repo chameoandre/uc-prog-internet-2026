@@ -2839,6 +2839,54 @@ Imagine uma esteira de produção em uma lanchonete:
 O encadeamento de \texttt{.then() => ...} é o movimento da esteira passando o pedido de uma mão para a outra.
 \end{boxDica}
 
+\subsection{Aquecimento — Micro Programas com APIs}
+
+Antes do desafio final, vamos praticar com APIs simples que retornam dados divertidos.
+
+\begin{boxAtividade}[Atividade prática 1 — O Oráculo de Conselhos]
+\textbf{A Intenção:} Consultar uma API que retorna um conselho aleatório em inglês e exibir na tela.
+
+\begin{boxCodigo}
+\begin{verbatim}
+<button id="btnConselho">Pedir Conselho</button>
+<p id="textoConselho"></p>
+
+<script>
+document.getElementById("btnConselho").addEventListener("click", () => {
+    fetch("https://api.adviceslip.com/advice")
+        .then(res => res.json())
+        .then(dados => {
+            document.getElementById("textoConselho").innerText = dados.slip.advice;
+        });
+});
+</script>
+\end{verbatim}
+\end{boxCodigo}
+\end{boxAtividade}
+
+\begin{boxAtividade}[Atividade prática 2 — Buscador de Pets]
+\textbf{A Intenção:} Buscar uma imagem aleatória de um cachorro e atualizar o atributo \texttt{src} da tag \texttt{<img>}.
+
+\begin{boxCodigo}
+\begin{verbatim}
+<button id="btnPet">Buscar Pet</button>
+<img id="fotoPet" src="" style="width: 300px; display: none;">
+
+<script>
+document.getElementById("btnPet").addEventListener("click", () => {
+    fetch("https://dog.ceo/api/breeds/image/random")
+        .then(res => res.json())
+        .then(dados => {
+            const img = document.getElementById("fotoPet");
+            img.src = dados.message;
+            img.style.display = "block";
+        });
+});
+</script>
+\end{verbatim}
+\end{boxCodigo}
+\end{boxAtividade}
+
 \subsection{Exploração Prática — O Projeto ViaCEP}
 
 No mundo real, as páginas não são estáticas. Elas precisam buscar informações em outros servidores (APIs). Nesta etapa, vamos transformar seu formulário em uma ferramenta de consulta em tempo real.
