@@ -160,7 +160,7 @@ IFSC -- Campus Garopaba
 
 \section{Visão Geral da Unidade Curricular}
 
-Esta unidade curricular foca no desenvolvimento de interfaces interativas e dinâmicas utilizando as tecnologias fundamentais da web. O cronograma está organizado em 8 roteiros progressivos:
+Esta unidade curricular foca no desenvolvimento de interfaces interativas e dinâmicas utilizando as tecnologias fundamentais da web. O cronograma está organizado em 9 roteiros progressivos:
 
 \begin{enumerate}
     \item \textbf{Fundamentos da Web e Estrutura HTML5}
@@ -173,6 +173,8 @@ Esta unidade curricular foca no desenvolvimento de interfaces interativas e din�
     Foco intensivo em métodos de seleção, criação e eventos.
     \item \textbf{Consumo de APIs e Requisições Assíncronas (Fetch)} \\
     Integração de dados externos (JSON) no frontend.
+    \item \textbf{Projeto Final Integrador} \\
+    Aplicação prática completa integrando HTML, CSS, DOM e Fetch API.
 \end{enumerate}
 
 \newpage
@@ -2943,6 +2945,109 @@ Um bom desenvolvedor mantém seu histórico organizado. Após testar o funcionam
 \begin{verbatim}
 git add .
 git commit -m "Roteiro 08: Implementando busca de CEP com Fetch API"
+git push origin main
+\end{verbatim}
+\end{boxCodigo}
+\end{boxAtividade}
+
+\newpage
+
+% =====================================================
+% ROTEIRO PRÁTICO 09
+% =====================================================
+
+\section{Roteiro Prático 09 — Projeto Final Integrador}
+
+% =====================================================
+% OBJETIVOS
+% =====================================================
+
+\begin{boxObjetivos}
+\textbf{Objetivos da Aula}
+
+Ao final deste roteiro o estudante será capaz de:
+
+\begin{itemize}
+\item Integrar todos os conceitos abordados durante a Unidade Curricular;
+\item Estruturar uma aplicação Single Page Application (SPA) simples;
+\item Consumir APIs públicas para preencher conteúdo dinamicamente;
+\item Garantir a responsividade e a estilização avançada com Flexbox/Grid.
+\end{itemize}
+\end{boxObjetivos}
+
+\subsection{Introdução ao Projeto Final}
+
+Chegou o momento de unificar todo o conhecimento. Ao longo das semanas, exploramos a estrutura com HTML5 Semântico, o design com CSS3, a lógica com JavaScript, a manipulação do DOM e a integração de dados via Fetch API.
+
+Nesta etapa, o seu grupo (ou você individualmente) deverá construir um projeto completo dividindo-o em Blocos Temáticos. 
+
+\begin{boxDica}
+Sugestões de temas: 
+\begin{itemize}
+    \item \textbf{Catálogo de Filmes:} Consumindo a OMDb API ou similar.
+    \item \textbf{Dashboard de Clima:} Consumindo a OpenWeather API.
+    \item \textbf{Pokédex Web:} Consumindo a PokéAPI.
+\end{itemize}
+\end{boxDica}
+
+\subsection{Blocos de Execução}
+
+O projeto deve ser construído respeitando as etapas de desenvolvimento profissional:
+
+\begin{boxAtividade}[Bloco 1: Estruturação e Semântica (HTML5)]
+\textbf{Objetivo:} Criar o "esqueleto" da aplicação.
+\begin{itemize}
+    \item Crie o arquivo \texttt{index.html}.
+    \item Utilize tags semânticas (\texttt{<header>}, \texttt{<main>}, \texttt{<section>}, \texttt{<footer>}).
+    \item Adicione um formulário de busca (input text e botão) no topo.
+    \item Crie uma área (\texttt{<div id="resultado">}) onde os dados da API aparecerão depois.
+\end{itemize}
+\end{boxAtividade}
+
+\begin{boxAtividade}[Bloco 2: Layout e Estilização (CSS3)]
+\textbf{Objetivo:} Aplicar a identidade visual e o design responsivo.
+\begin{itemize}
+    \item Crie um arquivo \texttt{style.css} e referencie no HTML.
+    \item Utilize \textbf{Flexbox} ou \textbf{CSS Grid} para organizar os elementos da tela.
+    \item Adicione estilos para botões e inputs (remova bordas padrão, adicione hover).
+    \item Utilize Media Queries (\texttt{@media}) para garantir que a aplicação fique boa tanto em Celulares quanto em Desktop.
+\end{itemize}
+\end{boxAtividade}
+
+\begin{boxAtividade}[Bloco 3: Interatividade (JS + DOM)]
+\textbf{Objetivo:} Escutar as ações do usuário.
+\begin{itemize}
+    \item Crie o arquivo \texttt{script.js} e anexe ao final do \texttt{<body>}.
+    \item Utilize \texttt{document.querySelector} para mapear o formulário e o botão de busca.
+    \item Adicione um escutador de eventos (\texttt{addEventListener('click', ...)}) para o botão.
+    \item Crie uma função que valide se o usuário digitou algo antes de buscar. Se vazio, exiba um alerta.
+\end{itemize}
+\end{boxAtividade}
+
+\begin{boxAtividade}[Bloco 4: Integração Externa (Fetch API)]
+\textbf{Objetivo:} Dar vida à aplicação com dados reais.
+\begin{itemize}
+    \item Na função acionada pelo botão (Bloco 3), faça um \texttt{fetch()} para a API escolhida.
+    \item Receba a resposta, converta-a via \texttt{.json()}.
+    \item Após receber os dados, crie elementos dinâmicos (ex: \texttt{document.createElement('div')} como um "card") para exibir os dados do JSON.
+    \item Acrescente atributos e classes dinâmicas ao card (\texttt{classList.add}) e finalmente anexe na tela com \texttt{appendChild}.
+\end{itemize}
+\end{boxAtividade}
+
+\subsection{Checklist de Entrega Final}
+
+\begin{boxAtividade}[Micro-Commit e Entrega]
+\begin{itemize}
+    \item Todos os arquivos (\texttt{html}, \texttt{css}, \texttt{js}) estão corretamente separados?
+    \item A aplicação não quebra ao ser visualizada em telas pequenas?
+    \item Os dados retornam da API de forma consistente?
+\end{itemize}
+
+Ao terminar, certifique-se de salvar todo o seu trabalho e enviar para o repositório remoto:
+\begin{boxCodigo}
+\begin{verbatim}
+git add .
+git commit -m "feat: Finalização do Projeto Integrador"
 git push origin main
 \end{verbatim}
 \end{boxCodigo}
