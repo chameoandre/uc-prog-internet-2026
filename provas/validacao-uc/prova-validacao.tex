@@ -1,0 +1,259 @@
+\documentclass[12pt,a4paper]{article}
+
+% =====================================================
+% PACOTES
+% =====================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{newtxtext,newtxmath}
+\usepackage[most]{tcolorbox}
+\usepackage{etoolbox}
+
+% Toggle para o Gabarito (false = prova aluno, true = gabarito professor)
+\newtoggle{gabarito}
+\settoggle{gabarito}{false}
+
+\geometry{
+    top=2.5cm,
+    bottom=3cm,
+    left=1.5cm,
+    right=1.5cm
+}
+
+\onehalfspacing
+
+% =====================================================
+% CORES PERSONALIZADAS
+% =====================================================
+\definecolor{azulTitulo}{RGB}{30,60,90}
+\definecolor{cinzaCodigo}{RGB}{245,245,245}
+\definecolor{corGabarito}{RGB}{180,50,50}
+
+% --- COMANDOS PARA O GABARITO ---
+% 1. Para textos que devem aparecer em ambos, mas destacados no gabarito
+\newcommand{\correto}[1]{\iftoggle{gabarito}{\textbf{\color{corGabarito}#1}}{#1}}
+
+% 2. Para o marcador (X) que DEVE SUMIR na prova do aluno
+\newcommand{\marcar}[1]{\iftoggle{gabarito}{\textbf{\color{corGabarito}#1}}{}}
+
+% 3. Para comentários extras do professor
+\newcommand{\checkGabarito}[1]{\iftoggle{gabarito}{\hspace{0.5cm} \textbf{\color{corGabarito}--- #1}}{}}
+
+% =====================================================
+% CABEÇALHO E RODAPÉ
+% =====================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[height=1.8cm]{../figures/garopaba_horizontal_marca2015_PNG.png}}
+\fancyhead[R]{
+\textbf{CST em Sistemas para Internet}\\
+\textbf{UC: Programação para Internet 1}\\
+Docente: Prof. André Moraes\\ 
+IFSC -- Campus Garopaba
+}
+\fancyfoot[L]{\small\textit{Avaliação Final de Validação \iftoggle{gabarito}{-- \textbf{GABARITO}}{}}}
+\fancyfoot[R]{\small Página \thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+\setlength{\headheight}{50pt}
+
+% =====================================================
+% ESTILO DE SEÇÃO
+% =====================================================
+\titleformat{\section}{\normalfont\Large\bfseries\color{azulTitulo}}{\thesection}{1em}{}[\vspace{0.3cm}\hrule]
+
+% =====================================================
+% DOCUMENTO
+% =====================================================
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{AVALIAÇÃO DE VALIDAÇÃO DE CONHECIMENTOS}}\\
+    \vspace{0.2cm}
+    Unidade Curricular: Programação para Internet 1\\
+    \iftoggle{gabarito}{\textbf{\color{corGabarito}CHAVE DE RESPOSTAS / GABARITO}}{}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{tcolorbox}[colback=white, colframe=black, boxrule=0.5pt, arc=0pt]
+    \textbf{Estudante:} \hrulefill \\
+    \vspace{0.3cm}
+    \textbf{Data:} \_\_\_/\_\_\_/\_\_\_\_\_ \hspace{2cm} \textbf{Nota:} \_\_\_\_\_\_\_\_\_\_
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+\section*{Instruções}
+\begin{itemize}
+    \item A prova contém 15 questões (3 dissertativas e 12 objetivas).
+    \item Leia atentamente cada enunciado antes de responder.
+    \item Utilize caneta azul ou preta para as respostas dissertativas.
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{Parte 1: Questões Dissertativas}
+
+% --- QUESTÃO 1 ---
+\begin{tcolorbox}[colback=azulTitulo!5, colframe=azulTitulo, title=Questão 1: HTML5 Semântico e Estrutura]
+    Explique por que a utilização de tags semânticas (como \texttt{<header>}, \texttt{<nav>}, \texttt{<main>} e \texttt{<article>}) é preferível ao uso genérico de \texttt{<div>}. Mencione pelo menos dois benefícios diretos (ex: SEO, acessibilidade).
+    \vspace{4cm}
+    \checkGabarito{Resposta esperada: Melhora o SEO (motores de busca entendem a estrutura), aumenta a acessibilidade (leitores de tela navegam melhor) e facilita a manutenção do código.}
+\end{tcolorbox}
+
+% --- QUESTÃO 2 ---
+\begin{tcolorbox}[colback=azulTitulo!5, colframe=azulTitulo, title=Questão 2: Manipulação Dinâmica do DOM]
+    Descreva o processo necessário para criar um novo elemento na página via JavaScript e inseri-lo em um container existente. Quais métodos do objeto \texttt{document} e de elementos do DOM são essenciais nesse fluxo?
+    \vspace{4cm}
+    \checkGabarito{Resposta esperada: 1. createElement() para fabricar o elemento; 2. innerText/innerHTML para dar conteúdo; 3. appendChild() ou append() para inserir no container pai.}
+\end{tcolorbox}
+
+% --- QUESTÃO 3 ---
+\begin{tcolorbox}[colback=azulTitulo!5, colframe=azulTitulo, title=Questão 3: Requisições Assíncronas (Fetch API)]
+    Utilizando a metáfora da "Esteira de Produção" vista em aula, descreva o que acontece em uma requisição utilizando a Fetch API, desde o pedido (\textit{fetch}) até a exibição dos dados convertidos em JSON na tela.
+    \vspace{4cm}
+    \checkGabarito{Resposta esperada: O fetch faz o pedido à rede; o primeiro .then() recebe a resposta bruta e converte para JSON (response.json()); o segundo .then() recebe os dados prontos para serem manipulados via DOM.}
+\end{tcolorbox}
+
+\newpage
+
+\section*{Parte 2: Questões Objetivas}
+
+% --- QUESTÃO 4 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 4: Fundamentos da Web]
+    Qual protocolo é responsável pela comunicação básica entre navegadores (clientes) e servidores web para a entrega de documentos HTML?
+    \begin{enumerate}[label=\alph*)]
+        \item FTP
+        \item \correto{HTTP / HTTPS}
+        \item SMTP
+        \item SSH
+    \end{enumerate}
+\end{tcolorbox}
+
+% --- QUESTÃO 5 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 5: CSS Box Model]
+    No modelo de caixa do CSS, qual propriedade é utilizada para criar um espaçamento \textbf{entre a borda do elemento e o seu conteúdo interno}?
+    \begin{enumerate}[label=\alph*)]
+        \item \texttt{margin}
+        \item \texttt{border}
+        \item \correto{\texttt{padding}}
+        \item \texttt{outline}
+    \end{enumerate}
+\end{tcolorbox}
+
+% --- QUESTÃO 6 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 6: Layouts Modernos (Flexbox e Grid)]
+    Sobre as tecnologias de layout modernas, assinale a alternativa \textbf{CORRETA}:
+    \begin{enumerate}[label=\alph*)]
+        \item O Flexbox é ideal para layouts bidimensionais (linhas e colunas simultâneas).
+        \item \texttt{display: grid} permite organizar elementos em apenas uma única direção.
+        \item \correto{O CSS Grid é otimizado para layouts bidimensionais, enquanto o Flexbox foca em alinhamento unidimensional.}
+        \item Ambas as propriedades foram descontinuadas em favor de tabelas HTML.
+    \end{enumerate}
+\end{tcolorbox}
+
+% --- QUESTÃO 7 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 7: Responsividade]
+    Para aplicar estilos CSS específicos quando a largura da tela for de \textbf{no máximo} 600 pixels, qual a sintaxe correta?
+    \begin{enumerate}[label=\alph*)]
+        \item \texttt{@media (min-width: 600px) \{ ... \}}
+        \item \correto{@media (max-width: 600px) \{ ... \}}
+        \item \texttt{@responsive 600px \{ ... \}}
+        \item \texttt{viewport.width = 600;}
+    \end{enumerate}
+\end{tcolorbox}
+
+% --- QUESTÃO 8 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 8: Frameworks CSS]
+    Qual a principal vantagem de utilizar um Framework CSS (como Bootstrap ou Tailwind) no desenvolvimento de um projeto web?
+    \begin{enumerate}[label=\alph*)]
+        \item Eliminar a necessidade de escrever qualquer código HTML.
+        \item \correto{Ganho de produtividade através de componentes e utilitários pré-estilizados e testados.}
+        \item Impedir que o site seja visualizado em dispositivos móveis.
+        \item Substituir o JavaScript para toda a lógica da aplicação.
+    \end{enumerate}
+\end{tcolorbox}
+
+% --- QUESTÃO 9 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 9: Validação de Formulários]
+    (Verdadeiro ou Falso) O atributo \texttt{required} no HTML5 é uma forma de validação nativa que impede o envio do formulário se o campo estiver vazio.
+    \begin{itemize}
+        \item (\marcar{X}) Verdadeiro
+        \item ( ) Falso
+    \end{itemize}
+\end{tcolorbox}
+
+% --- QUESTÃO 10 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 10: Lógica de Programação JS]
+    Qual método de array percorre todos os elementos e executa uma função para cada um deles, sendo muito utilizado para manipulação de listas no DOM?
+    \begin{enumerate}[label=\alph*)]
+        \item \texttt{filter()}
+        \item \texttt{map()}
+        \item \correto{forEach()}
+        \item \texttt{sort()}
+    \end{enumerate}
+\end{tcolorbox}
+
+% --- QUESTÃO 11 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 11: Controle de Versão (Git)]
+    Qual comando envia as alterações confirmadas (commits) do repositório local para um servidor remoto (como o GitHub)?
+    \begin{enumerate}[label=\alph*)]
+        \item \texttt{git add}
+        \item \texttt{git commit}
+        \item \correto{git push}
+        \item \texttt{git pull}
+    \end{enumerate}
+\end{tcolorbox}
+
+% --- QUESTÃO 12 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 12: Seletores CSS]
+    Para selecionar todos os elementos que possuem a classe \texttt{"alerta"} no CSS, qual seletor deve ser utilizado?
+    \begin{enumerate}[label=\alph*)]
+        \item \texttt{\#alerta}
+        \item \correto{.alerta}
+        \item \texttt{*alerta}
+        \item \texttt{alerta}
+    \end{enumerate}
+\end{tcolorbox}
+
+% --- QUESTÃO 13 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 13: Estrutura de Documentos Web]
+    (Verdadeiro ou Falso) A tag \texttt{<head>} é responsável por conter o conteúdo visível da página, como textos, imagens e vídeos.
+    \begin{itemize}
+        \item ( ) Verdadeiro
+        \item (\marcar{X}) Falso \checkGabarito{(O conteúdo visível fica no body)}
+    \end{itemize}
+\end{tcolorbox}
+
+% --- QUESTÃO 14 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 14: JavaScript Moderno]
+    Qual palavra-chave é utilizada para declarar uma variável que \textbf{não pode ser reatribuída} após o seu valor inicial ser definido?
+    \begin{enumerate}[label=\alph*)]
+        \item \texttt{let}
+        \item \texttt{var}
+        \item \correto{const}
+        \item \texttt{immutable}
+    \end{enumerate}
+\end{tcolorbox}
+
+% --- QUESTÃO 15 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 15: Integração com APIs]
+    Na utilização da Fetch API, qual o propósito do método \texttt{response.json()}?
+    \begin{enumerate}[label=\alph*)]
+        \item Enviar um objeto JSON para o servidor.
+        \item \correto{Converter o fluxo de resposta da rede em um objeto JavaScript utilizável.}
+        \item Fechar a conexão com o servidor imediatamente.
+        \item Criar um novo arquivo no servidor remoto.
+    \end{enumerate}
+\end{tcolorbox}
+
+\end{document}

@@ -1,0 +1,233 @@
+\documentclass[12pt,a4paper]{article}
+
+% =====================================================
+% PACOTES
+% =====================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{newtxtext,newtxmath}
+\usepackage[most]{tcolorbox}
+\usepackage{etoolbox}
+
+% Toggle para o Gabarito (false = prova aluno, true = gabarito professor)
+\newtoggle{gabarito}
+\settoggle{gabarito}{false}
+
+\geometry{
+    top=2.5cm,
+    bottom=3cm,
+    left=1.5cm,
+    right=1.5cm
+}
+
+\onehalfspacing
+
+% =====================================================
+% CORES PERSONALIZADAS
+% =====================================================
+\definecolor{azulTitulo}{RGB}{30,60,90}
+\definecolor{cinzaCodigo}{RGB}{245,245,245}
+\definecolor{corGabarito}{RGB}{180,50,50}
+
+% --- COMANDOS PARA O GABARITO ---
+\newcommand{\correto}[1]{\iftoggle{gabarito}{\textbf{\color{corGabarito}#1}}{#1}}
+\newcommand{\marcar}[1]{\iftoggle{gabarito}{\textbf{\color{corGabarito}#1}}{}}
+\newcommand{\checkGabarito}[1]{\iftoggle{gabarito}{\hspace{0.5cm} \textbf{\color{corGabarito}--- #1}}{}}
+\newcommand{\justificativa}[1]{\iftoggle{gabarito}{\vspace{0.2cm}\textbf{\color{corGabarito}Justificativa:} \color{corGabarito}#1}{\vspace{0.8cm}}}
+
+% =====================================================
+% CABEÇALHO E RODAPÉ
+% =====================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[height=1.8cm]{../figures/garopaba_horizontal_marca2015_PNG.png}}
+\fancyhead[R]{
+\textbf{CST em Sistemas para Internet}\\
+\textbf{UC: Programação para Internet 1}\\
+Docente: Prof. André Moraes\\ 
+IFSC -- Campus Garopaba
+}
+\fancyfoot[L]{\small\textit{Avaliação 1 \iftoggle{gabarito}{-- \textbf{GABARITO}}{}}}
+\fancyfoot[R]{\small Página \thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+\setlength{\headheight}{50pt}
+
+% =====================================================
+% ESTILO DE SEÇÃO
+% =====================================================
+\titleformat{\section}{\normalfont\Large\bfseries\color{azulTitulo}}{\thesection}{1em}{}[\vspace{0.3cm}\hrule]
+
+% =====================================================
+% DOCUMENTO
+% =====================================================
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{AVALIAÇÃO 1}}\\
+    \vspace{0.2cm}
+    Unidade Curricular: Programação para Internet 1\\
+    \iftoggle{gabarito}{\textbf{\color{corGabarito}CHAVE DE RESPOSTAS / GABARITO}}{}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{tcolorbox}[colback=white, colframe=black, boxrule=0.5pt, arc=0pt]
+    \textbf{Estudante:} \hrulefill \\
+    \vspace{0.3cm}
+    \textbf{Data:} \_\_\_/\_\_\_/\_\_\_\_\_ \hspace{2cm} \textbf{Nota:} \_\_\_\_\_\_\_\_\_\_
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+\section*{Instruções}
+\begin{itemize}
+    \item A prova contém 10 questões, divididas em Múltipla Escolha, V/F, Relacionar Colunas e Discursiva.
+    \item Nas questões de Verdadeiro ou Falso, \textbf{justifique as alternativas falsas}.
+    \item Leia atentamente cada enunciado antes de responder.
+\end{itemize}
+
+\vspace{0.5cm}
+
+\section*{Parte 1: Múltipla Escolha}
+
+% --- QUESTÃO 1 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 1: HTML5 Semântico]
+    Qual tag semântica do HTML5 deve ser utilizada para englobar o conteúdo principal e exclusivo de uma página, excluindo cabeçalhos, rodapés e menus de navegação globais?
+    \begin{enumerate}[label=\alph*)]
+        \item \texttt{<section>}
+        \item \correto{\texttt{<main>}}
+        \item \texttt{<article>}
+        \item \texttt{<header>}
+    \end{enumerate}
+\end{tcolorbox}
+
+% --- QUESTÃO 2 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 2: Layouts com CSS (Grid e Flexbox)]
+    Sobre a diferença fundamental entre CSS Grid e Flexbox, assinale a alternativa \textbf{CORRETA}:
+    \begin{enumerate}[label=\alph*)]
+        \item \correto{O CSS Grid foi projetado para layouts bidimensionais (linhas e colunas), enquanto o Flexbox foi projetado primariamente para layouts unidimensionais (uma linha ou coluna por vez).}
+        \item Flexbox requer que o elemento pai tenha altura fixa, enquanto o Grid ajusta-se automaticamente.
+        \item CSS Grid substituiu completamente o Flexbox, tornando-o obsoleto em navegadores modernos.
+        \item O Flexbox utiliza \texttt{grid-template-columns} para alinhar elementos verticalmente.
+    \end{enumerate}
+\end{tcolorbox}
+
+% --- QUESTÃO 3 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 3: Eventos no DOM]
+    No JavaScript, qual método é a forma mais recomendada e moderna para adicionar um "escutador" de eventos a um botão selecionado, para executar uma função ao ser clicado?
+    \begin{enumerate}[label=\alph*)]
+        \item \texttt{button.onclick = function() \{ ... \}}
+        \item \texttt{button.listenEvent("click", function() \{ ... \})}
+        \item \correto{\texttt{button.addEventListener("click", function() \{ ... \})}}
+        \item \texttt{<button onclick="function()">} diretamente no HTML
+    \end{enumerate}
+\end{tcolorbox}
+
+% --- QUESTÃO 4 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 4: Assincronicidade (Fetch)]
+    Qual é o principal retorno da função \texttt{fetch()} no JavaScript antes de receber os dados efetivos da requisição?
+    \begin{enumerate}[label=\alph*)]
+        \item Uma string no formato JSON.
+        \item Uma matriz contendo os objetos da API.
+        \item \correto{Uma \textit{Promise} (promessa) que representará a resposta HTTP no futuro.}
+        \item Um erro temporário de bloqueio (\textit{blocking error}).
+    \end{enumerate}
+\end{tcolorbox}
+
+\newpage
+\section*{Parte 2: Verdadeiro ou Falso (Justifique as falsas)}
+
+% --- QUESTÃO 5 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 5: Box Model]
+    ( ) A propriedade \texttt{margin} do CSS adiciona espaço interno a um elemento, afastando o conteúdo das bordas da própria caixa.
+    \justificativa{Falso. O \texttt{margin} adiciona espaço EXTERNO (entre a borda e outros elementos). O espaço INTERNO é o \texttt{padding}.}
+\end{tcolorbox}
+
+% --- QUESTÃO 6 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 6: Escopo JS]
+    ( ) Variáveis declaradas com \texttt{let} e \texttt{const} possuem escopo de bloco, significando que não podem ser acessadas fora do bloco (\texttt{\{ ... \}}) onde foram definidas.
+    \justificativa{Verdadeiro.}
+\end{tcolorbox}
+
+% --- QUESTÃO 7 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 7: Responsividade]
+    ( ) A técnica *Mobile First* sugere que devemos escrever o CSS primeiramente para telas grandes (desktop) e depois usar Media Queries (\texttt{@media}) com \texttt{max-width} para ajustar o layout para celulares.
+    \justificativa{Falso. A técnica Mobile First escreve o CSS base para celulares primeiro e usa Media Queries com \texttt{min-width} para adaptar o layout em telas maiores.}
+\end{tcolorbox}
+
+% --- QUESTÃO 8 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 8: Manipulação DOM]
+    ( ) O método \texttt{document.querySelectorAll()} retorna o primeiro elemento HTML que corresponda ao seletor CSS fornecido.
+    \justificativa{Falso. Ele retorna uma lista (NodeList) com TODOS os elementos que correspondem ao seletor. O método que retorna apenas o primeiro é o \texttt{querySelector()}.}
+\end{tcolorbox}
+
+
+\section*{Parte 3: Relacione as Colunas}
+
+% --- QUESTÃO 9 ---
+\begin{tcolorbox}[colback=white, colframe=azulTitulo, title=Questão 9: Métodos DOM e API]
+    Associe a Coluna A (Método) com a Coluna B (Descrição correta da sua função).
+
+    \vspace{0.3cm}
+    \textbf{Coluna A:}
+    \begin{itemize}
+        \item[(1)] \texttt{document.createElement('div')}
+        \item[(2)] \texttt{elemento.appendChild(novoElemento)}
+        \item[(3)] \texttt{response.json()}
+        \item[(4)] \texttt{elemento.classList.add('ativo')}
+    \end{itemize}
+
+    \textbf{Coluna B:}
+    \begin{itemize}
+        \item[ ( \correto{3} ) ] Transforma o fluxo de resposta da requisição \textit{Fetch} em um objeto JavaScript utilizável.
+        \item[ ( \correto{4} ) ] Adiciona uma classe CSS a um nó do DOM, possibilitando mudança visual sem reescrever atributos de estilo diretamente.
+        \item[ ( \correto{1} ) ] Cria um novo nó de elemento HTML em memória, que ainda não está visível na tela.
+        \item[ ( \correto{2} ) ] Insere um nó de elemento no final da lista de filhos de um nó pai especificado, renderizando-o na tela.
+    \end{itemize}
+\end{tcolorbox}
+
+\newpage
+\section*{Parte 4: Questão Prática / Discursiva}
+
+% --- QUESTÃO 10 ---
+\begin{tcolorbox}[colback=azulTitulo!5, colframe=azulTitulo, title=Questão 10: Leitura de Código com Fetch API]
+    Analise o trecho de código JavaScript abaixo:
+
+    \begin{tcolorbox}[colback=cinzaCodigo, colframe=black, arc=2pt, boxrule=0.5pt]
+\begin{verbatim}
+const divResultado = document.querySelector('#resultado');
+
+fetch('https://api.exemplo.com/usuario/1')
+  .then(resposta => resposta.json())
+  .then(dados => {
+      const paragrafo = document.createElement('p');
+      paragrafo.innerText = `Nome: ${dados.nome}`;
+      divResultado.appendChild(paragrafo);
+  })
+  .catch(erro => {
+      console.log('Ocorreu um erro');
+  });
+\end{verbatim}
+    \end{tcolorbox}
+
+    \textbf{Explique com suas palavras o que este código faz passo a passo.} O que o usuário veria na tela (supondo que no HTML exista a div correspondente e a requisição seja um sucesso retornando um JSON com \texttt{\{"nome": "Maria"\}})?
+    \vspace{4cm}
+
+    \checkGabarito{\textbf{Resposta esperada:} 
+    1. O código seleciona a div de ID "resultado" do HTML. 
+    2. Faz uma requisição assíncrona para a API usando fetch. 
+    3. Quando a resposta chega, ela é convertida para JSON no primeiro then(). 
+    4. No segundo then(), o código cria dinamicamente uma tag <p>, adiciona o texto "Nome: Maria" (usando o dado que veio da API) e insere esse parágrafo dentro da div "resultado" usando appendChild. 
+    5. O usuário veria aparecer na tela o texto "Nome: Maria".}
+\end{tcolorbox}
+
+\end{document}

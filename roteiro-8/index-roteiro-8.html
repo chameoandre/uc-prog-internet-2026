@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roteiro 07 - Laboratório de DOM</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+
+        .box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #003366;
+            border-bottom: 2px solid #003366;
+            padding-bottom: 5px;
+        }
+
+        #fugitivo {
+            position: absolute;
+            transition: all 0.1s;
+        }
+
+        .lamp-container {
+            text-align: center;
+        }
+
+        img {
+            width: 150px;
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Roteiro 08 — Requisições Assíncronas e Fetch API</h1>
+
+    <!-- ATIVIDADE 1: Oráculo dos Conselhos -->
+    <div class="box">
+        <h2>1. Oráculo dos Conselhos</h2>
+        <button id="btnConselho">Pedir Conselho</button>
+        <p id="textoConselho"></p>
+    </div>
+
+
+    <!-- ATIVIDADE 2: Busca Pet -->
+    <div class="box">
+        <h2>2. Busca Pet</h2>
+        <button id="btnPet">Buscar Pet</button>
+        <img id="fotoPet" src="" style="width: 300px; display: none;">
+    </div>
+
+
+    <!-- ATIVIDADE 3: Busca CEP -->
+    <div class="box">
+        <h2>3. Busca CEP</h2>
+        <input type="text" id="inputCep" placeholder="Digite um CEP">
+        <button id="btnCep">Buscar CEP</button>
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        // 1. Oráculo dos Conselhos
+        // =============================================
+        // Seleciona os elementos do botão e do parágrafo onde o conselho será exibido
+        const btnConselho = document.getElementById("btnConselho");
+        const textoConselho = document.getElementById("textoConselho");
+
+        // Adiciona um evento de clique ao botão
+        btnConselho.addEventListener("click", () => {
+            // Faz uma requisição para a API de conselhos
+            fetch("https://api.adviceslip.com/advice")
+                .then(response => response.json()) // Converte a resposta para JSON
+                .then(data => {
+                    // Exibe o conselho no parágrafo
+                    textoConselho.textContent = data.slip.advice;
+                })
+        });
+
+        // 2. Busca Pet
+        // =============================================
+        const btnPet = document.getElementById("btnPet");
+        const fotoPet = document.getElementById("fotoPet");
+
+        btnPet.addEventListener("click", () => {
+            //Faz uma requisição para a API de fotos de pets
+            fetch("https://random.dog/woof.json")
+                .then(res => res.json()) // Lendo a resposta em JSON
+                .then(dados => {
+                    // Exibe a foto do pet
+                    fotoPet.src = dados.url;
+                    fotoPet.style.display = "block"; // Mostra a imagem
+                })
+        });
+
+
+        // 3. Busca CEP
+        const btnCep = document.getElementById("btnCep");
+        const inputCep = document.getElementById("inputCep");
+        const resultado = document.getElementById("resultado");
+
+        btnCep.addEventListener("click", () => {
+            fetch('https://viacep.com.br/ws/' + inputCep.value + '/json/')
+                .then(res => res.json())
+                .then(dados => {
+                    if (dados.erro) {
+                        resultado.textContent = "CEP não encontrado!";
+                    } else {
+                        resultado.textContent =
+                            `Endereço: ${dados.logradouro}, 
+                        Bairro: ${dados.bairro}, 
+                        Cidade: ${dados.localidade}, 
+                        Estado: ${dados.uf}`;
+                    }
+                })
+        });
+    </script>
+</body>
+
+</html>
