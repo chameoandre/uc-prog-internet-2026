@@ -1,0 +1,71 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+
+\definecolor{ifscgreen}{HTML}{329632}
+
+\begin{document}
+
+\begin{minipage}{0.2\textwidth}
+    % Espaço para logo se necessário
+\end{minipage}
+\begin{minipage}{0.8\textwidth}
+    \begin{flushright}
+        \textbf{IFSC - Campus São José} \\
+        \textbf{Superior em Sistemas para Internet} \\
+        \textbf{UC: Programação para Internet} \\
+        \textbf{Prof. Andre Chameo}
+    \end{flushright}
+\end{minipage}
+
+\vspace{1cm}
+
+\begin{center}
+    \begin{tcolorbox}[colback=ifscgreen!10,colframe=ifscgreen,title=\centering\large\bfseries ATIVIDADE PRÁTICA: DESENVOLVIMENTO WEB FRONT-END]
+        \centering\small Trabalho em Duplas - Prazo: [Definir Data]
+    \end{tcolorbox}
+\end{center}
+
+\section{Objetivo}
+O objetivo desta atividade é aplicar de forma integrada os conhecimentos de \textbf{HTML5 Semântico}, \textbf{CSS3 (Flexbox/Grid/Responsividade)} e \textbf{JavaScript (DOM/Eventos)} para construir uma interface web moderna, funcional e esteticamente atraente.
+
+\section{Orientações Gerais}
+\begin{itemize}
+    \item A atividade deve ser realizada em \textbf{duplas}.
+    \item O projeto deve ser versionado no \textbf{GitHub} (um repositório por dupla).
+    \item É obrigatório o uso de design responsivo (Mobile First).
+    \item Não é permitido o uso de frameworks CSS (Bootstrap, Tailwind) ou bibliotecas externas, exceto fontes (Google Fonts) e ícones (FontAwesome/SVG).
+\end{itemize}
+
+\section{Temáticas Sugeridas}
+Escolha uma das temáticas abaixo para o desenvolvimento do projeto:
+
+\begin{enumerate}[label=\textbf{Tema \arabic*:}]
+    \item \textbf{E-Commerce de Nicho:} Uma loja virtual para um produto específico (ex: plantas, cafés, vinis). Deve conter cabeçalho, galeria de produtos com filtros e um modal de "carrinho".
+    \item \textbf{Dashboard de Monitoramento:} Um painel administrativo para um sistema de Smart Home ou Saúde. Deve conter menu lateral, cartões de métricas (temperatura, batimentos) e tabelas de histórico.
+    \item \textbf{Landing Page de Evento Tecnológico:} Uma página de inscrição para um congresso ou hackathon. Deve conter hero section, cronograma, palestrantes e formulário de inscrição com validação.
+    \item \textbf{Portal de Conteúdo/Notícias:} Um site de notícias focado em um tema (ex: Sustentabilidade, Games). Deve focar em hierarquia tipográfica, grid de notícias e barra lateral de "mais lidas".
+\end{enumerate}
+
+\section{Requisitos Técnicos}
+\begin{itemize}
+    \item \textbf{HTML:} Uso correto de tags semânticas (\texttt{main}, \texttt{section}, \texttt{article}, \texttt{aside}, \texttt{nav}).
+    \item \textbf{CSS:} Layout construído com Flexbox e/ou Grid Layout. Uso de variáveis CSS e pseudo-classes (\texttt{:hover}, \texttt{:active}).
+    \item \textbf{JavaScript:} Implementação de ao menos uma funcionalidade interativa (ex: carrossel, validação de form, alternância de tema dark/light ou filtragem dinâmica).
+\end{itemize}
+
+\section{Critérios de Avaliação}
+\begin{enumerate}
+    \item \textbf{Estrutura e Semântica (20\%):} Organização do HTML.
+    \item \textbf{Design e Estética (30\%):} Harmonia de cores, tipografia e acabamento visual.
+    \item \textbf{Responsividade (25\%):} Adaptação para diferentes tamanhos de tela.
+    \item \textbf{Funcionalidade JS (25\%):} Lógica e interação com o usuário via DOM.
+\end{enumerate}
+
+\end{document}
