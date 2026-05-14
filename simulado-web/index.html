@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulado Interativo - Programação para Internet - IFSC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #32A041;
+            --secondary: #24752f;
+            --success: #32A041;
+            --error: #C8191E;
+            --dark: #121212;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-light: #F4F4F9;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #121212, #1b3d22);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-container {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 850px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-top: 0;
+            font-weight: 800;
+            background: -webkit-linear-gradient(45deg, #32A041, #F4F4F9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .option-btn {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            color: var(--text-light);
+            padding: 16px 22px;
+            font-size: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .option-btn.correct {
+            background: rgba(50, 160, 65, 0.4);
+            border-color: var(--success);
+            box-shadow: 0 0 15px rgba(50, 160, 65, 0.4);
+        }
+
+        .option-btn.wrong {
+            background: rgba(200, 25, 30, 0.4);
+            border-color: var(--error);
+        }
+
+        .primary-btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(50, 160, 65, 0.4);
+        }
+
+        .primary-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(50, 160, 65, 0.6);
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #32A041, #24752f);
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .hidden { display: none !important; }
+
+        .score-container { text-align: center; }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(var(--success) 0%, rgba(255,255,255,0.1) 0%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 30px auto;
+            font-size: 2.5rem;
+            font-weight: 800;
+            position: relative;
+        }
+
+        .score-circle::after {
+            content: "";
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            background: #121212;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .score-text { position: relative; z-index: 1; }
+        
+        code {
+            background: rgba(0,0,0,0.5);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #32A041;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--text-light);
+            font-size: 1rem;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .status-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .status-hit { color: var(--success); }
+        .status-miss { color: var(--error); }
+
+        .matching-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(0,0,0,0.2);
+            padding: 12px 20px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .matching-item { font-weight: 600; }
+
+        .matching-select {
+            background: #1c1c1c;
+            color: white;
+            border: 1px solid var(--glass-border);
+            padding: 8px;
+            border-radius: 6px;
+            width: 60%;
+            max-width: 300px;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .summary-table th, .summary-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .summary-table th { background: rgba(255,255,255,0.1); }
+
+        .print-header { display: none; }
+
+        @media print {
+            body { background: none; color: black; animation: none; }
+            .glass-container { box-shadow: none; border: none; background: none; width: 100%; padding: 0; }
+            .primary-btn, .header-info, .progress-bar, #score-message, .status-bar { display: none !important; }
+            h1 { background: none; -webkit-text-fill-color: black; color: black; }
+            .score-circle { border: 2px solid black; background: none; }
+            .score-circle::after { display: none; }
+            .score-text { color: black; }
+            .print-header { display: block; border-bottom: 2px solid #ccc; padding-bottom: 15px; margin-bottom: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-container" id="welcome-screen">
+        <svg width="80" height="80" viewBox="0 0 100 100" style="display: block; margin: 0 auto 20px;">
+            <rect width="100" height="100" fill="#32A041" rx="10"/>
+            <path d="M20 20 L40 20 L40 80 L20 80 Z" fill="white"/>
+            <path d="M50 20 L80 20 L80 35 L50 35 Z" fill="white"/>
+            <path d="M50 45 L80 45 L80 60 L50 60 Z" fill="white"/>
+            <path d="M50 70 L80 70 L80 85 L50 85 Z" fill="white"/>
+            <circle cx="90" cy="15" r="5" fill="#C8191E"/>
+        </svg>
+        <h1>Simulado: Programação para Internet</h1>
+        
+        <div class="input-group">
+            <label for="student-name">Nome Completo do Estudante:</label>
+            <input type="text" id="student-name" placeholder="Digite seu nome aqui..." required>
+        </div>
+
+        <p style="text-align: center; font-weight: 600; margin-bottom: 10px;">Distribuição de Conteúdos (41 Questões):</p>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Temas</th>
+                    <th>Qtd</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>HTML5 & Estrutura</td><td>Semântica, listas, formulários, meta tags</td><td>8</td></tr>
+                <tr><td>CSS3 & Estilização</td><td>Box Model, Flexbox, Grid, Responsividade</td><td>10</td></tr>
+                <tr><td>JavaScript (ES6+)</td><td>Variáveis, Arrow Functions, Métodos de Array</td><td>9</td></tr>
+                <tr><td>DOM & Eventos</td><td>Seletores, Manipulação e Eventos Web</td><td>5</td></tr>
+                <tr><td>APIs & Asincronismo</td><td>JSON, Fetch, Promises, HTTP Verbs/Status</td><td>7</td></tr>
+                <tr><td>Conceitos & Segurança</td><td>XSS, Web Storage, HTTPS, Ferramentas</td><td>2</td></tr>
+            </tbody>
+        </table>
+
+        <button class="primary-btn" onclick="startQuiz()">Iniciar Simulado</button>
+    </div>
+
+    <div class="glass-container hidden" id="quiz-screen">
+        <div class="header-info">
+            <span id="q-counter">Questão 1 de 41</span>
+            <span id="q-theme">HTML & Estrutura</span>
+        </div>
+        <div class="status-bar">
+            <span class="status-hit">Acertos: <span id="hits-count">0</span></span>
+            <span class="status-miss">Erros: <span id="misses-count">0</span></span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+
+        <div id="question-container"></div>
+    </div>
+
+    <div class="glass-container hidden" id="result-screen">
+        <svg width="60" height="60" viewBox="0 0 100 100" style="display: block; margin: 0 auto 20px;">
+            <rect width="100" height="100" fill="#32A041" rx="10"/>
+            <path d="M20 20 L40 20 L40 80 L20 80 Z" fill="white"/>
+            <path d="M50 20 L80 20 L80 35 L50 35 Z" fill="white"/>
+            <path d="M50 45 L80 45 L80 60 L50 60 Z" fill="white"/>
+            <path d="M50 70 L80 70 L80 85 L50 85 Z" fill="white"/>
+        </svg>
+        <h1>Resultado Final</h1>
+        <div class="score-container">
+            <div class="score-circle" id="score-circle">
+                <span class="score-text" id="score-text">0%</span>
+            </div>
+            <h2 id="score-message">Processando...</h2>
+            <p>Você acertou <strong id="score-correct">0</strong> de <strong id="score-total">0</strong> questões.</p>
+            <div class="print-header" id="print-header"></div>
+            <button class="primary-btn" onclick="window.print()" style="background: #34495e; margin-bottom: 10px;">Imprimir / Salvar PDF</button>
+            <button class="primary-btn" onclick="location.reload()">Reiniciar Simulado</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            // HTML & Estrutura
+            { theme: "HTML & Estrutura", type: "mc", text: "Qual elemento HTML5 é mais adequado para envolver o conteúdo principal de uma página, excluindo cabeçalhos, rodapés e barras laterais?", options: ["<section>", "<article>", "<main>", "<div>"], answer: 2 },
+            { theme: "HTML & Estrutura", type: "mc", text: "Para que serve o atributo <code>alt</code> em uma tag <code><img></code>?", options: ["Define o título da imagem ao passar o mouse.", "Fornece um texto descritivo caso a imagem não carregue ou para leitores de tela.", "Define a largura automática da imagem.", "Cria um link de download para a imagem."], answer: 1 },
+            { theme: "HTML & Estrutura", type: "mc", text: "Qual tag é utilizada para criar uma lista onde a ordem dos itens NÃO é importante?", options: ["<ol>", "<li>", "<ul>", "<dl>"], answer: 2 },
+            { theme: "HTML & Estrutura", type: "mc", text: "Qual atributo de um <code><input></code> é essencial para identificar o dado que será enviado ao servidor em um formulário?", options: ["id", "class", "name", "placeholder"], answer: 2 },
+            { theme: "HTML & Estrutura", type: "mc", text: "Qual a função da meta tag <code>viewport</code> no <code><head></code> do HTML?", options: ["Melhorar o SEO no Google.", "Controlar como o site é exibido em dispositivos móveis (responsividade).", "Definir a cor de fundo do navegador.", "Acelerar o carregamento de imagens."], answer: 1 },
+            { theme: "HTML & Estrutura", type: "mc", text: "Qual elemento HTML é usado para fornecer uma lista de opções pré-definidas para um controle <code><input></code>?", options: ["<select>", "<datalist>", "<option>", "<list>"], answer: 1 },
+            { theme: "HTML & Estrutura", type: "mc", text: "Qual das tags abaixo é considerada semântica e deve ser usada para conteúdo tangencial ou barras laterais?", options: ["<div>", "<section>", "<aside>", "<nav>"], answer: 2 },
+            { theme: "HTML & Estrutura", type: "mc", text: "(Verdadeiro ou Falso): A tag <code><!DOCTYPE html></code> é um elemento HTML que deve ser fechado com <code></!DOCTYPE></code>.", options: ["Verdadeiro", "Falso"], answer: 1 },
+
+            // CSS & Estilização
+            { theme: "CSS & Estilização", type: "mc", text: "Qual seletor CSS tem a MAIOR especificidade?", options: ["Seletor de elemento (ex: p)", "Seletor de classe (ex: .btn)", "Seletor de ID (ex: #header)", "Seletor universal (*)"], answer: 2 },
+            { theme: "CSS & Estilização", type: "mc", text: "No modelo de caixa (Box Model), qual propriedade adiciona espaço INTERNO entre o conteúdo e a borda?", options: ["margin", "padding", "border-spacing", "outline"], answer: 1 },
+            { theme: "CSS & Estilização", type: "mc", text: "Qual valor da propriedade <code>display</code> transforma um elemento em um container flexível?", options: ["block", "grid", "flex", "inline-block"], answer: 2 },
+            { theme: "CSS & Estilização", type: "mc", text: "Como centralizamos um item horizontalmente dentro de um container Flexbox?", options: ["align-items: center", "justify-content: center", "text-align: center", "margin: auto"], answer: 1 },
+            { theme: "CSS & Estilização", type: "mc", text: "Qual propriedade CSS é usada para mudar a cor do texto?", options: ["text-color", "font-style", "color", "background-color"], answer: 2 },
+            { theme: "CSS & Estilização", type: "mc", text: "Para que servem as <code>@media queries</code>?", options: ["Para inserir vídeos do YouTube.", "Para aplicar estilos diferentes baseados no tamanho da tela (Design Responsivo).", "Para conectar o CSS ao banco de dados.", "Para criar animações complexas."], answer: 1 },
+            { theme: "CSS & Estilização", type: "mc", text: "Qual propriedade do CSS Grid é usada para definir o número e a largura das colunas?", options: ["grid-template-rows", "grid-column-gap", "grid-template-columns", "grid-flow"], answer: 2 },
+            { theme: "CSS & Estilização", type: "mc", text: "Qual valor da propriedade <code>position</code> mantém um elemento fixo na tela mesmo ao rolar a página, mas respeitando o limite do seu container pai?", options: ["absolute", "fixed", "sticky", "relative"], answer: 2 },
+            { theme: "CSS & Estilização", type: "mc", text: "O seletor <code>div > p</code> seleciona quais elementos?", options: ["Todos os parágrafos dentro de uma div.", "Apenas parágrafos que são filhos diretos de uma div.", "Parágrafos que vêm logo após uma div.", "Divs que contêm parágrafos."], answer: 1 },
+            { theme: "CSS & Estilização", type: "mc", text: "(Verdadeiro ou Falso): No CSS, a propriedade <code>float</code> é a maneira mais moderna e recomendada de criar layouts complexos hoje em dia.", options: ["Verdadeiro", "Falso (usa-se Flexbox ou Grid)"], answer: 1 },
+
+            // JavaScript
+            { theme: "JavaScript", type: "mc", text: "Qual a diferença principal entre declarar uma variável com <code>let</code> e <code>const</code>?", options: ["let é para números e const para textos.", "const permite reatribuir valor, let não.", "let permite reatribuir valor, const cria uma constante que não pode ser mudada.", "Não existe diferença na prática."], answer: 2 },
+            { theme: "JavaScript", type: "mc", text: "O que o operador <code>===</code> faz no JavaScript?", options: ["Compara apenas o valor.", "Atribui um valor a uma variável.", "Compara valor E tipo de dado.", "Verifica se um valor é maior que outro."], answer: 2 },
+            { theme: "JavaScript", type: "mc", text: "Como se declara uma função de seta (Arrow Function) corretamente?", options: ["function => () {}", "const minhaFuncao = () => {}", "arrow function() {}", "def minhaFuncao():"], answer: 1 },
+            { theme: "JavaScript", type: "mc", text: "Qual método é usado para adicionar um item ao FINAL de um array?", options: ["array.pop()", "array.shift()", "array.push()", "array.unshift()"], answer: 2 },
+            { theme: "JavaScript", type: "mc", text: "O que o comando <code>console.log(typeof '10')</code> retornará?", options: ["number", "string", "int", "boolean"], answer: 1 },
+            { theme: "JavaScript", type: "mc", text: "Qual método de array cria um NOVO array com os resultados da chamada de uma função para cada elemento?", options: ["forEach()", "map()", "filter()", "reduce()"], answer: 1 },
+            { theme: "JavaScript", type: "mc", text: "Qual método de array é usado para criar um novo array apenas com os elementos que passam em um teste específico?", options: ["find()", "slice()", "filter()", "concat()"], answer: 2 },
+            { theme: "JavaScript", type: "mc", text: "O que o método <code>array.forEach()</code> faz?", options: ["Retorna um novo array modificado.", "Executa uma função para cada elemento do array, mas não retorna nada.", "Filtra os elementos do array.", "Inverte a ordem do array."], answer: 1 },
+            { theme: "JavaScript", type: "mc", text: "(Verdadeiro ou Falso): No JavaScript, strings são imutáveis.", options: ["Verdadeiro", "Falso"], answer: 0 },
+
+            // DOM & Eventos
+            { theme: "DOM & Eventos", type: "mc", text: "Qual método do objeto <code>document</code> é o mais moderno e flexível para selecionar um único elemento via seletores CSS?", options: ["getElementById()", "getElementsByClassName()", "querySelector()", "querySelectorAll()"], answer: 2 },
+            { theme: "DOM & Eventos", type: "mc", text: "Qual evento é disparado quando um usuário clica em um botão?", options: ["hover", "change", "submit", "click"], answer: 3 },
+            { theme: "DOM & Eventos", type: "mc", text: "Como alteramos o conteúdo de texto de um elemento capturado no DOM?", options: ["elemento.innerHTML = 'Novo'", "elemento.value = 'Novo'", "elemento.textContent = 'Novo'", "A e C estão corretas"], answer: 3 },
+            { theme: "DOM & Eventos", type: "mc", text: "Para que serve o método <code>preventDefault()</code> dentro de um evento de formulário?", options: ["Para limpar o formulário.", "Para impedir que a página recarregue ao enviar o formulário.", "Para validar se os campos estão vazios.", "Para enviar os dados via AJAX automaticamente."], answer: 1 },
+            { theme: "DOM & Eventos", type: "mc", text: "Como adicionamos uma classe CSS a um elemento via JavaScript?", options: ["elemento.style.class = 'nova'", "elemento.classList.add('nova')", "elemento.setAttribute('class', 'nova')", "B e C estão corretas"], answer: 3 },
+
+            // APIs & Asincronismo
+            { theme: "APIs & Asincronismo", type: "mc", text: "Qual API moderna do navegador é usada para fazer requisições HTTP assíncronas?", options: ["axios", "fetch", "ajax", "http.get"], answer: 1 },
+            { theme: "APIs & Asincronismo", type: "mc", text: "Em uma Promise, qual método é chamado quando a operação é concluída com SUCESSO?", options: ["catch()", "finally()", "then()", "reject()"], answer: 2 },
+            { theme: "APIs & Asincronismo", type: "mc", text: "Qual palavra-chave usamos dentro de uma função <code>async</code> para esperar a resolução de uma Promise?", options: ["wait", "pause", "await", "stop"], answer: 2 },
+            { theme: "APIs & Asincronismo", type: "mc", text: "Qual verbo HTTP é geralmente usado para BUSCAR dados de um servidor?", options: ["POST", "PUT", "DELETE", "GET"], answer: 3 },
+            { theme: "APIs & Asincronismo", type: "mc", text: "Qual código de status HTTP indica que uma requisição foi bem sucedida e resultou na CRIAÇÃO de um novo recurso?", options: ["200 OK", "201 Created", "204 No Content", "403 Forbidden"], answer: 1 },
+            { theme: "APIs & Asincronismo", type: "mc", text: "O que significa a sigla JSON?", options: ["Java Standard Object Notation", "JavaScript Object Notation", "Joint Simple Object Network", "JavaScript Object Nodes"], answer: 1 },
+            
+            { 
+                theme: "APIs & HTTP", 
+                type: "matching", 
+                text: "Relacione os verbos HTTP às suas funções corretas no padrão REST:", 
+                pairs: [
+                    { item: "GET", match: "Buscar/Consultar dados" },
+                    { item: "POST", match: "Enviar/Criar novos dados" },
+                    { item: "PUT", match: "Atualizar dados existentes" },
+                    { item: "DELETE", match: "Remover dados" }
+                ]
+            },
+
+            // Segurança & Conceitos
+            { theme: "Conceitos Web", type: "mc", text: "Qual tecnologia de armazenamento no navegador permite guardar dados que NÃO expiram quando o navegador é fechado?", options: ["sessionStorage", "Cookies de sessão", "localStorage", "Cache-Control"], answer: 2 },
+            { theme: "Conceitos Web", type: "mc", text: "O que caracteriza um ataque de XSS (Cross-Site Scripting)?", options: ["Derrubar o servidor com excesso de acessos.", "Injeção de scripts maliciosos em páginas visualizadas por outros usuários.", "Tentar adivinhar a senha do administrador por força bruta.", "Interceptar pacotes de rede sem fio."], answer: 1 }
+        ];
+
+        let currentQ = 0;
+        let score = 0;
+        let answered = 0;
+
+        function startQuiz() {
+            const name = document.getElementById('student-name').value;
+            if(!name.trim()) return alert("Por favor, informe seu nome.");
+            document.getElementById('welcome-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const q = questions[currentQ];
+            document.getElementById('q-counter').innerText = `Questão ${currentQ + 1} de ${questions.length}`;
+            document.getElementById('q-theme').innerText = q.theme;
+            document.getElementById('progress').style.width = `${(currentQ / questions.length) * 100}%`;
+
+            const container = document.getElementById('question-container');
+            container.innerHTML = "";
+
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question-text';
+            questionDiv.innerHTML = q.text;
+            container.appendChild(questionDiv);
+
+            if (q.type === 'mc') {
+                const optionsGrid = document.createElement('div');
+                optionsGrid.className = 'options-grid';
+                q.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.textContent = opt;
+                    btn.onclick = () => checkAnswer(idx);
+                    optionsGrid.appendChild(btn);
+                });
+                container.appendChild(optionsGrid);
+            } else if (q.type === 'matching') {
+                const matchingContainer = document.createElement('div');
+                const allMatches = q.pairs.map(p => p.match);
+                const shuffledMatches = [...allMatches].sort(() => Math.random() - 0.5);
+
+                q.pairs.forEach((pair, idx) => {
+                    const row = document.createElement('div');
+                    row.className = 'matching-row';
+                    row.innerHTML = `
+                        <span class="matching-item">${pair.item}</span>
+                        <select class="matching-select" id="match-select-${idx}">
+                            <option value="">Selecione...</option>
+                            ${shuffledMatches.map(m => `<option value="${m}">${m}</option>`).join('')}
+                        </select>
+                    `;
+                    matchingContainer.appendChild(row);
+                });
+
+                const confirmBtn = document.createElement('button');
+                confirmBtn.className = 'primary-btn';
+                confirmBtn.textContent = "Confirmar Respostas";
+                confirmBtn.onclick = () => checkMatchingAnswer(q);
+                matchingContainer.appendChild(confirmBtn);
+                container.appendChild(matchingContainer);
+            }
+        }
+
+        function checkAnswer(idx) {
+            const q = questions[currentQ];
+            const btns = document.querySelectorAll('.option-btn');
+            btns.forEach(b => b.disabled = true);
+            answered++;
+
+            if(idx === q.answer) {
+                btns[idx].classList.add('correct');
+                score++;
+            } else {
+                btns[idx].classList.add('wrong');
+                btns[q.answer].classList.add('correct');
+            }
+            updateStatus();
+            setTimeout(nextQuestion, 1500);
+        }
+
+        function checkMatchingAnswer(q) {
+            let correctCount = 0;
+            const selects = document.querySelectorAll('.matching-select');
+            q.pairs.forEach((pair, idx) => {
+                const selectedVal = document.getElementById(`match-select-${idx}`).value;
+                const row = selects[idx].parentElement;
+                if (selectedVal === pair.match) {
+                    correctCount++;
+                    row.style.borderColor = "var(--success)";
+                    row.style.background = "rgba(50, 160, 65, 0.2)";
+                } else {
+                    row.style.borderColor = "var(--error)";
+                    row.style.background = "rgba(200, 25, 30, 0.2)";
+                }
+                selects[idx].disabled = true;
+            });
+
+            answered++;
+            if (correctCount === q.pairs.length) score++;
+            updateStatus();
+            setTimeout(nextQuestion, 2500);
+        }
+
+        function updateStatus() {
+            document.getElementById('hits-count').innerText = score;
+            document.getElementById('misses-count').innerText = answered - score;
+        }
+
+        function nextQuestion() {
+            currentQ++;
+            if(currentQ < questions.length) renderQuestion();
+            else showResults();
+        }
+
+        function showResults() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+            const pct = Math.round((score / questions.length) * 100);
+            document.getElementById('score-text').innerText = `${pct}%`;
+            document.getElementById('score-correct').innerText = score;
+            document.getElementById('score-total').innerText = questions.length;
+            document.getElementById('score-circle').style.background = `conic-gradient(var(--success) ${pct}%, rgba(255,255,255,0.1) 0%)`;
+            let msg = pct >= 80 ? "Excelente! Você domina os conceitos." : pct >= 60 ? "Bom trabalho! Continue praticando." : "Recomendamos revisar os fundamentos.";
+            document.getElementById('score-message').innerText = msg;
+            const name = document.getElementById('student-name').value;
+            document.getElementById('print-header').innerHTML = `<p><strong>Estudante:</strong> ${name}</p><p><strong>Data:</strong> ${new Date().toLocaleString()}</p><p><strong>Desempenho:</strong> ${score} de ${questions.length} (${pct}%)</p>`;
+        }
+    </script>
+</body>
+</html>
