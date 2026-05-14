@@ -1,355 +1,371 @@
 
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
 \usepackage{geometry}
-\geometry{margin=2cm}
+\geometry{margin=1.2cm, top=1.5cm}
+\usepackage{multicol}
 \usepackage{enumitem}
 \usepackage{xcolor}
 
 \begin{document}
 \begin{center}
-    {\huge \textbf{Simulado: Programação para Internet}} \\
-    \vspace{0.2cm}
-    {\large IFSC - Instituto Federal de Santa Catarina}
+    {\Large \textbf{Simulado: Programação para Internet}} \\
+    \vspace{0.1cm}
+    {\small IFSC - Instituto Federal de Santa Catarina}
 \end{center}
 
-\vspace{0.5cm}
-
+\begin{multicols*}{2}
 \begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*]
 \item \textbf{[HTML \& Estrutura]} Qual elemento HTML5 é mais adequado para envolver o conteúdo principal de uma página, excluindo cabeçalhos, rodapés e barras laterais?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item $<$section$>$
   \item $<$article$>$
   \item $<$main$>$
   \item $<$div$>$
 \end{enumerate}
-\vfill
+
 \item \textbf{[HTML \& Estrutura]} Para que serve o atributo \texttt{alt} em uma tag \texttt{\$<$img\$>$}?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item Define o título da imagem ao passar o mouse.
   \item Fornece um texto descritivo caso a imagem não carregue ou para leitores de tela.
   \item Define a largura automática da imagem.
   \item Cria um link de download para a imagem.
 \end{enumerate}
-\vfill
+
 \item \textbf{[HTML \& Estrutura]} Qual tag é utilizada para criar uma lista onde a ordem dos itens NÃO é importante?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item $<$ol$>$
   \item $<$li$>$
   \item $<$ul$>$
   \item $<$dl$>$
 \end{enumerate}
-\vfill
+
 \item \textbf{[HTML \& Estrutura]} Qual atributo de um \texttt{\$<$input\$>$} é essencial para identificar o dado que será enviado ao servidor em um formulário?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item id
   \item class
   \item name
   \item placeholder
 \end{enumerate}
-\vfill
-\newpage
+
 \item \textbf{[HTML \& Estrutura]} Qual a função da meta tag \texttt{viewport} no \texttt{\$<$head\$>$} do HTML?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item Melhorar o SEO no Google.
   \item Controlar como o site é exibido em dispositivos móveis (responsividade).
   \item Definir a cor de fundo do navegador.
   \item Acelerar o carregamento de imagens.
 \end{enumerate}
-\vfill
+
 \item \textbf{[HTML \& Estrutura]} Qual elemento HTML é usado para fornecer uma lista de opções pré-definidas para um controle \texttt{\$<$input\$>$}?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item $<$select$>$
   \item $<$datalist$>$
   \item $<$option$>$
   \item $<$list$>$
 \end{enumerate}
-\vfill
+
 \item \textbf{[HTML \& Estrutura]} Qual das tags abaixo é considerada semântica e deve ser usada para conteúdo tangencial ou barras laterais?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item $<$div$>$
   \item $<$section$>$
   \item $<$aside$>$
   \item $<$nav$>$
 \end{enumerate}
-\vfill
+
 \item \textbf{[HTML \& Estrutura]} (Verdadeiro ou Falso): A tag \texttt{\$<$!DOCTYPE html\$>$} é um elemento HTML que deve ser fechado com \texttt{\$<$/!DOCTYPE\$>$}.
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item Verdadeiro
   \item Falso
 \end{enumerate}
-\vfill
+
+\end{enumerate}
+\end{multicols*}
 \newpage
+\begin{multicols*}{2}
+\begin{enumerate}[label=\textbf{\arabic*.}, resume, leftmargin=*]
 \item \textbf{[CSS \& Estilização]} Qual seletor CSS tem a MAIOR especificidade?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item Seletor de elemento (ex: p)
   \item Seletor de classe (ex: .btn)
   \item Seletor de ID (ex: \#header)
   \item Seletor universal (*)
 \end{enumerate}
-\vfill
+
 \item \textbf{[CSS \& Estilização]} No modelo de caixa (Box Model), qual propriedade adiciona espaço INTERNO entre o conteúdo e a borda?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item margin
   \item padding
   \item border-spacing
   \item outline
 \end{enumerate}
-\vfill
+
 \item \textbf{[CSS \& Estilização]} Qual valor da propriedade \texttt{display} transforma um elemento em um container flexível?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item block
   \item grid
   \item flex
   \item inline-block
 \end{enumerate}
-\vfill
+
 \item \textbf{[CSS \& Estilização]} Como centralizamos um item horizontalmente dentro de um container Flexbox?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item align-items: center
   \item justify-content: center
   \item text-align: center
   \item margin: auto
 \end{enumerate}
-\vfill
-\newpage
+
 \item \textbf{[CSS \& Estilização]} Qual propriedade CSS é usada para mudar a cor do texto?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item text-color
   \item font-style
   \item color
   \item background-color
 \end{enumerate}
-\vfill
+
 \item \textbf{[CSS \& Estilização]} Para que servem as \texttt{@media queries}?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item Para inserir vídeos do YouTube.
   \item Para aplicar estilos diferentes baseados no tamanho da tela (Design Responsivo).
   \item Para conectar o CSS ao banco de dados.
   \item Para criar animações complexas.
 \end{enumerate}
-\vfill
+
 \item \textbf{[CSS \& Estilização]} Qual propriedade do CSS Grid é usada para definir o número e a largura das colunas?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item grid-template-rows
   \item grid-column-gap
   \item grid-template-columns
   \item grid-flow
 \end{enumerate}
-\vfill
+
 \item \textbf{[CSS \& Estilização]} Qual valor da propriedade \texttt{position} mantém um elemento fixo na tela mesmo ao rolar a página, mas respeitando o limite do seu container pai?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item absolute
   \item fixed
   \item sticky
   \item relative
 \end{enumerate}
-\vfill
+
+\end{enumerate}
+\end{multicols*}
 \newpage
+\begin{multicols*}{2}
+\begin{enumerate}[label=\textbf{\arabic*.}, resume, leftmargin=*]
 \item \textbf{[CSS \& Estilização]} O seletor \texttt{div $>$ p} seleciona quais elementos?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item Todos os parágrafos dentro de uma div.
   \item Apenas parágrafos que são filhos diretos de uma div.
   \item Parágrafos que vêm logo após uma div.
   \item Divs que contêm parágrafos.
 \end{enumerate}
-\vfill
+
 \item \textbf{[CSS \& Estilização]} (Verdadeiro ou Falso): No CSS, a propriedade \texttt{float} é a maneira mais moderna e recomendada de criar layouts complexos hoje em dia.
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item Verdadeiro
   \item Falso (usa-se Flexbox ou Grid)
 \end{enumerate}
-\vfill
+
 \item \textbf{[JavaScript]} Qual a diferença principal entre declarar uma variável com \texttt{let} e \texttt{const}?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item let é para números e const para textos.
   \item const permite reatribuir valor, let não.
   \item let permite reatribuir valor, const cria uma constante que não pode ser mudada.
   \item Não existe diferença na prática.
 \end{enumerate}
-\vfill
+
 \item \textbf{[JavaScript]} O que o operador \texttt{===} faz no JavaScript?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item Compara apenas o valor.
   \item Atribui um valor a uma variável.
   \item Compara valor E tipo de dado.
   \item Verifica se um valor é maior que outro.
 \end{enumerate}
-\vfill
-\newpage
+
 \item \textbf{[JavaScript]} Como se declara uma função de seta (Arrow Function) corretamente?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item function =$>$ () \{\}
   \item const minhaFuncao = () =$>$ \{\}
   \item arrow function() \{\}
   \item def minhaFuncao():
 \end{enumerate}
-\vfill
+
 \item \textbf{[JavaScript]} Qual método é usado para adicionar um item ao FINAL de um array?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item array.pop()
   \item array.shift()
   \item array.push()
   \item array.unshift()
 \end{enumerate}
-\vfill
+
 \item \textbf{[JavaScript]} O que o comando \texttt{console.log(typeof '10')} retornará?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item number
   \item string
   \item int
   \item boolean
 \end{enumerate}
-\vfill
+
 \item \textbf{[JavaScript]} Qual método de array cria um NOVO array com os resultados da chamada de uma função para cada elemento?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item forEach()
   \item map()
   \item filter()
   \item reduce()
 \end{enumerate}
-\vfill
+
+\end{enumerate}
+\end{multicols*}
 \newpage
+\begin{multicols*}{2}
+\begin{enumerate}[label=\textbf{\arabic*.}, resume, leftmargin=*]
 \item \textbf{[JavaScript]} Qual método de array é usado para criar um novo array apenas com os elementos que passam em um teste específico?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item find()
   \item slice()
   \item filter()
   \item concat()
 \end{enumerate}
-\vfill
+
 \item \textbf{[JavaScript]} O que o método \texttt{array.forEach()} faz?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item Retorna um novo array modificado.
   \item Executa uma função para cada elemento do array, mas não retorna nada.
   \item Filtra os elementos do array.
   \item Inverte a ordem do array.
 \end{enumerate}
-\vfill
+
 \item \textbf{[JavaScript]} (Verdadeiro ou Falso): No JavaScript, strings são imutáveis.
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item Verdadeiro
   \item Falso
 \end{enumerate}
-\vfill
+
 \item \textbf{[DOM \& Eventos]} Qual método do objeto \texttt{document} é o mais moderno e flexível para selecionar um único elemento via seletores CSS?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item getElementById()
   \item getElementsByClassName()
   \item querySelector()
   \item querySelectorAll()
 \end{enumerate}
-\vfill
-\newpage
+
 \item \textbf{[DOM \& Eventos]} Qual evento é disparado quando um usuário clica em um botão?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item hover
   \item change
   \item submit
   \item click
 \end{enumerate}
-\vfill
+
 \item \textbf{[DOM \& Eventos]} Como alteramos o conteúdo de texto de um elemento capturado no DOM?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item elemento.innerHTML = 'Novo'
   \item elemento.value = 'Novo'
   \item elemento.textContent = 'Novo'
   \item A e C estão corretas
 \end{enumerate}
-\vfill
+
 \item \textbf{[DOM \& Eventos]} Para que serve o método \texttt{preventDefault()} dentro de um evento de formulário?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item Para limpar o formulário.
   \item Para impedir que a página recarregue ao enviar o formulário.
   \item Para validar se os campos estão vazios.
   \item Para enviar os dados via AJAX automaticamente.
 \end{enumerate}
-\vfill
+
 \item \textbf{[DOM \& Eventos]} Como adicionamos uma classe CSS a um elemento via JavaScript?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item elemento.style.class = 'nova'
   \item elemento.classList.add('nova')
   \item elemento.setAttribute('class', 'nova')
   \item B e C estão corretas
 \end{enumerate}
-\vfill
+
+\end{enumerate}
+\end{multicols*}
 \newpage
+\begin{multicols*}{2}
+\begin{enumerate}[label=\textbf{\arabic*.}, resume, leftmargin=*]
 \item \textbf{[APIs \& Asincronismo]} Qual API moderna do navegador é usada para fazer requisições HTTP assíncronas?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item axios
   \item fetch
   \item ajax
   \item http.get
 \end{enumerate}
-\vfill
+
 \item \textbf{[APIs \& Asincronismo]} Em uma Promise, qual método é chamado quando a operação é concluída com SUCESSO?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item catch()
   \item finally()
   \item then()
   \item reject()
 \end{enumerate}
-\vfill
+
 \item \textbf{[APIs \& Asincronismo]} Qual palavra-chave usamos dentro de uma função \texttt{async} para esperar a resolução de uma Promise?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item wait
   \item pause
   \item await
   \item stop
 \end{enumerate}
-\vfill
+
 \item \textbf{[APIs \& Asincronismo]} Qual verbo HTTP é geralmente usado para BUSCAR dados de um servidor?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item POST
   \item PUT
   \item DELETE
   \item GET
 \end{enumerate}
-\vfill
-\newpage
+
 \item \textbf{[APIs \& Asincronismo]} Qual código de status HTTP indica que uma requisição foi bem sucedida e resultou na CRIAÇÃO de um novo recurso?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item 200 OK
   \item 201 Created
   \item 204 No Content
   \item 403 Forbidden
 \end{enumerate}
-\vfill
+
 \item \textbf{[APIs \& Asincronismo]} O que significa a sigla JSON?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item Java Standard Object Notation
   \item JavaScript Object Notation
   \item Joint Simple Object Network
   \item JavaScript Object Nodes
 \end{enumerate}
-\vfill
+
 \item \textbf{[APIs \& HTTP]} Relacione os verbos HTTP às suas funções corretas no padrão REST:
-\begin{itemize}
-  \item ( ) GET \hfill A. Remover dados
-  \item ( ) POST \hfill B. Atualizar dados existentes
-  \item ( ) PUT \hfill C. Enviar/Criar novos dados
-  \item ( ) DELETE \hfill D. Buscar/Consultar dados
+\begin{itemize}[noitemsep]
+  \item ( ) GET \hfill A. Remover
+  \item ( ) POST \hfill B. Atualizar
+  \item ( ) PUT \hfill C. Enviar
+  \item ( ) DELETE \hfill D. Buscar
 \end{itemize}
-\vfill
+
 \item \textbf{[Conceitos Web]} Qual tecnologia de armazenamento no navegador permite guardar dados que NÃO expiram quando o navegador é fechado?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item sessionStorage
   \item Cookies de sessão
   \item localStorage
   \item Cache-Control
 \end{enumerate}
-\vfill
+
+\end{enumerate}
+\end{multicols*}
 \newpage
+\begin{multicols*}{2}
+\begin{enumerate}[label=\textbf{\arabic*.}, resume, leftmargin=*]
 \item \textbf{[Conceitos Web]} O que caracteriza um ataque de XSS (Cross-Site Scripting)?
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}[label=(\alph*), noitemsep]
   \item Derrubar o servidor com excesso de acessos.
   \item Injeção de scripts maliciosos em páginas visualizadas por outros usuários.
   \item Tentar adivinhar a senha do administrador por força bruta.
   \item Interceptar pacotes de rede sem fio.
 \end{enumerate}
-\vfill
+
 
 \end{enumerate}
+\end{multicols*}
 \end{document}
