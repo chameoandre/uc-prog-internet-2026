@@ -18,6 +18,8 @@
 \usepackage[most]{tcolorbox}
 \usepackage{float}
 \usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric}
 
 \geometry{
     top=2.5cm,
@@ -116,44 +118,49 @@ Docente: Prof. André Moraes
 \vspace{0.8cm}
 
 \section{Objetivo}
-Consolidar o aprendizado das tecnologias front-end (\textbf{HTML, CSS e JS}) através do desenvolvimento de uma interface completa, utilizando o framework \textbf{Bootstrap} para agilidade no layout, mantendo o foco em boas práticas de estruturação e interatividade.
+Consolidar o aprendizado das tecnologias fundamentais da web através da aplicação prática dos recursos abordados nos roteiros: estruturação semântica, estilização avançada com \textbf{Flexbox}, uso estratégico de \textbf{Classes e IDs} para personalização CSS e implementação de interatividade dinâmica via \textbf{JavaScript}.
 
 \section{Orientações e Requisitos de Construção}
-Para garantir a organização e a qualidade técnica do projeto, os seguintes requisitos devem ser seguidos:
-
 \begin{itemize}
-    \item \textbf{Estrutura de Conteúdo:} A página principal deve ser organizada em, no máximo, \textbf{4 seções principais} (ex: Hero, Serviços, Galeria, Contato).
-    \item \textbf{Hierarquia de Profundidade:} Cada seção deve respeitar até \textbf{3 níveis de profundidade} estrutural (ex: \texttt{Section} $\rightarrow$ \texttt{Row/Container} $\rightarrow$ \texttt{Cards/Elements}).
-    \item \textbf{Framework e Layout:} Está liberado o uso do \textbf{Bootstrap}. Recomenda-se a adoção do \textbf{modelo de Cards} (visto em sala) para a exibição de itens repetitivos (produtos, serviços, membros da equipe).
-    \item \textbf{Navegação:} É obrigatória a inclusão de um \textbf{Menu Superior (Navbar)} fixo ou responsivo, contendo links para as seções da página (âncoras) ou páginas internas.
+    \item \textbf{Estrutura de Conteúdo:} A página deve ser organizada em no máximo \textbf{4 seções principais}, respeitando até \textbf{3 níveis de profundidade} hierárquica.
+    \item \textbf{Formulário Obrigatório:} É indispensável a inclusão de ao menos um \textbf{formulário funcional} para inscrição, solicitação de serviços ou inclusão de dados (utilizando diversos tipos de \texttt{input}).
+    \item \textbf{Navegação:} Inclusão de um menu superior (Navbar) com opções de navegação interna ou entre páginas.
+    \item \textbf{Estilização:} Uso de modelos baseados em \textbf{Cards} para apresentação de informações, garantindo organização visual.
 \end{itemize}
 
-\section{Estrutura de Diretórios Sugerida}
-Mantenha o projeto organizado seguindo o padrão profissional abaixo:
+\section{Fluxo de Produção Sugerido}
+Abaixo, apresentamos os estágios recomendados para o andamento do projeto:
 
+\begin{center}
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    block/.style={rectangle, draw, fill=azulTitulo!10, text width=3.5cm, text centered, rounded corners, minimum height=1.2cm, font=\small\bfseries},
+    arrow/.style={thick, -{Stealth}, azulTitulo}
+]
+    \node (step1) [block] {1. Definição do Tema e Mockup (Esboço)};
+    \node (step2) [block, right=of step1] {2. Estruturação HTML (Semântica)};
+    \node (step3) [block, below=of step2] {3. Estilização CSS (Flexbox/Layout)};
+    \node (step4) [block, left=of step3] {4. Interatividade JS e Ajustes};
+
+    \draw [arrow] (step1) -- (step2);
+    \draw [arrow] (step2) -- (step3);
+    \draw [arrow] (step3) -- (step4);
+\end{tikzpicture}
+\end{center}
+
+\section{Estrutura de Diretórios}
 \begin{boxCodigo}
 \begin{verbatim}
 projeto-final/
 ├── index.html          (Página principal)
 ├── css/
-│   └── style.css       (Estilos personalizados além do Bootstrap)
+│   └── style.css       (Flexbox, IDs e Classes)
 ├── js/
-│   └── script.js      (Lógica DOM e interações)
+│   └── script.js      (Lógica DOM e Interação)
 └── assets/
-    ├── img/           (Imagens e ícones)
-    └── docs/          (Documentação opcional)
+    └── img/           (Imagens e ícones)
 \end{verbatim}
 \end{boxCodigo}
-
-\section{Dicas para Início da Construção}
-\begin{boxAtividade}[Checklist Inicial]
-\begin{enumerate}
-    \item \textbf{Mockup/Esboço:} Desenhe no papel ou em ferramenta digital (Figma) as 4 seções antes de codar.
-    \item \textbf{Navbar First:} Comece pelo menu. Ele ajuda a definir o esqueleto da navegação.
-    \item \textbf{Cards Reutilizáveis:} Crie um modelo de card com Bootstrap e utilize o JavaScript ou apenas replicação HTML para popular a seção de conteúdo.
-    \item \textbf{Bootstrap Grid:} Lembre-se de usar as classes \texttt{.container}, \texttt{.row} e \texttt{.col} para garantir que o layout não "quebre" em telas menores.
-\end{enumerate}
-\end{boxAtividade}
 
 \newpage
 \section{Sugestões de Temáticas}
@@ -161,82 +168,72 @@ projeto-final/
 \begin{enumerate}[label=\textbf{Tema \arabic*:}, leftmargin=2cm]
     \item \textbf{Turismo e Lazer (Foco Garopaba)}
     \begin{itemize}
-        \item Sub 1: Site institucional de Pousada com sistema de reserva de quartos.
-        \item Sub 2: Guia de Trilhas e Natureza com mapas e dicas de preservação.
-        \item Sub 3: Portal do Surf local (previsão, escolas e campeonatos).
+        \item Sub 1: Site institucional de Pousada com formulário de reserva.
+        \item Sub 2: Guia de Trilhas com formulário de inscrição para grupos.
     \end{itemize}
 
     \item \textbf{E-commerce e Catálogos Profissionais}
     \begin{itemize}
-        \item Sub 1: Loja de Cafés Especiais com carrinho e filtros de grãos.
-        \item Sub 2: Catálogo de Livraria Independente com busca dinâmica.
-        \item Sub 3: Artesanato local com galeria de fotos e pedidos via WhatsApp.
+        \item Sub 1: Loja de Cafés com formulário de assinatura mensal.
+        \item Sub 2: Catálogo de Livraria com formulário de pedido de obra.
     \end{itemize}
 
     \item \textbf{Serviços, Saúde e Bem-estar}
     \begin{itemize}
-        \item Sub 1: Clínica Veterinária com agendamento de consultas.
-        \item Sub 2: Landing page para Spa ou Estúdio de Yoga.
-        \item Sub 3: Portal de Nutrição com calculadora de IMC ou planos de dieta.
+        \item Sub 1: Clínica Veterinária com formulário de pré-agendamento.
+        \item Sub 2: Portal de Nutrição com formulário de anamnese simplificado.
     \end{itemize}
 
-    \item \textbf{Painéis e Dashboards de Dados (JS Intensivo)}
+    \item \textbf{Painéis e Dashboards de Dados}
     \begin{itemize}
-        \item Sub 1: Dashboard de Controle Financeiro Pessoal (gastos/receitas).
-        \item Sub 2: Painel de Smart Home (monitoramento de temperatura/luzes).
-        \item Sub 3: Monitor de Treinos de Academia (histórico e metas).
+        \item Sub 1: Controle Financeiro com formulário de inclusão de despesas.
+        \item Sub 2: Monitor de Treinos com formulário de registro de atividade.
     \end{itemize}
 
     \item \textbf{Portfólios e Branding Pessoal}
     \begin{itemize}
-        \item Sub 1: Portfólio de Fotógrafo com galeria filtrável por categoria.
-        \item Sub 2: Site de Freelancer Tech com currículo e formulário de contato.
-        \item Sub 3: Landing Page para lançamento de App Mobile ou SaaS.
+        \item Sub 1: Portfólio de Fotógrafo com formulário de orçamento.
+        \item Sub 2: Site de Freelancer com formulário de "Fale Comigo".
     \end{itemize}
 
     \item \textbf{Gastronomia e Alimentação}
     \begin{itemize}
-        \item Sub 1: Cardápio Digital Interativo para Hamburgueria.
-        \item Sub 2: Site de Receitas com filtros por tempo ou dificuldade.
-        \item Sub 3: Loja de Produtos Orgânicos e entrega local.
+        \item Sub 1: Cardápio Digital com formulário de pedido online.
+        \item Sub 2: Site de Receitas com formulário para envio de sugestões.
     \end{itemize}
 
     \item \textbf{Social, Educação e Comunidade}
     \begin{itemize}
-        \item Sub 1: Site para ONG de Adoção de Animais (cards de pets).
-        \item Sub 2: Portal de Cursos Online com categorias e inscrições.
-        \item Sub 3: Blog de Notícias Comunitárias com sistema de comentários (mock).
+        \item Sub 1: ONG de Adoção com formulário de interesse em adotar.
+        \item Sub 2: Portal de Cursos com formulário de pré-matrícula.
     \end{itemize}
 
     \item \textbf{Entretenimento e Cultura}
     \begin{itemize}
-        \item Sub 1: Agenda Cultural de eventos da região.
-        \item Sub 2: Guia de Cinema/Teatro com sinopses e horários.
-        \item Sub 3: Landing page para um Podcast ou Banda Independente.
+        \item Sub 1: Agenda Cultural com formulário para envio de eventos.
+        \item Sub 2: Site de Cinema com formulário de pesquisa de satisfação.
     \end{itemize}
 
     \item \textbf{Negócios e Imobiliário}
     \begin{itemize}
-        \item Sub 1: Portal de Imobiliária com filtros de preço e localização.
-        \item Sub 2: Site de Consultoria Empresarial com agendamento.
-        \item Sub 3: Banco de Talentos / Mural de Empregos local.
+        \item Sub 1: Portal de Imobiliária com formulário de proposta.
+        \item Sub 2: Mural de Empregos com formulário de envio de currículo.
     \end{itemize}
 
     \item \textbf{Sustentabilidade e Meio Ambiente}
     \begin{itemize}
-        \item Sub 1: Calculadora de Pegada de Carbono com dicas práticas.
-        \item Sub 2: Guia de Coleta Seletiva e pontos de descarte na cidade.
-        \item Sub 3: Portal de Energias Renováveis (Solar/Eólica).
+        \item Sub 1: Guia de Coleta com formulário de denúncia/sugestão ambiental.
+        \item Sub 2: Portal de Energia Solar com formulário de pedido de orçamento.
     \end{itemize}
 \end{enumerate}
 
 \section{Critérios de Avaliação}
 \begin{boxAtividade}[Critérios Técnicos]
 \begin{itemize}
-    \item \textbf{Estrutura e Organização (2.0):} Indentação, semântica HTML e hierarquia de seções.
-    \item \textbf{Layout e Bootstrap (3.0):} Uso eficiente do Grid e componentes (Navbar e Cards).
-    \item \textbf{Responsividade (2.5):} Funcionamento Mobile-First sem quebras de layout.
-    \item \textbf{Interatividade JS (2.5):} Manipulação do DOM para dinamismo na interface.
+    \item \textbf{Estrutura e Organização (2.0):} Indentação, semântica HTML e uso de IDs/Classes.
+    \item \textbf{Layout e Flexbox (3.0):} Uso eficiente do Flexbox e componentes de Cards.
+    \item \textbf{Formulário (2.5):} Estruturação correta de campos e labels.
+    \item \textbf{Interatividade JS (2.5):} Manipulação do DOM para dinamismo e validação básica.
 \end{itemize}
 \end{boxAtividade}
 
