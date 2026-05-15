@@ -17,6 +17,7 @@
 \usepackage{newtxtext,newtxmath}
 \usepackage[most]{tcolorbox}
 \usepackage{float}
+\usepackage{listings}
 
 \geometry{
     top=2.5cm,
@@ -65,6 +66,18 @@
     }
 }
 
+\newtcolorbox{boxCodigo}{
+    breakable,
+    colback=cinzaCodigo,
+    colframe=azulTitulo,
+    boxrule=0.8pt,
+    arc=2pt,
+    left=6pt,
+    right=6pt,
+    top=6pt,
+    bottom=6pt
+}
+
 % =====================================================
 % CABEÇALHO E RODAPÉ
 % =====================================================
@@ -85,6 +98,7 @@ Docente: Prof. André Moraes
 % ESTILO DE SEÇÃO
 % =====================================================
 \titleformat{\section}{\normalfont\Large\bfseries\color{azulTitulo}}{\thesection}{1em}{}[\vspace{0.3cm}\hrule]
+\titleformat{\subsection}{\normalfont\large\bfseries\color{azulTitulo}}{\thesubsection}{1em}{}[\vspace{0.1cm}]
 
 % =====================================================
 % DOCUMENTO
@@ -102,19 +116,47 @@ Docente: Prof. André Moraes
 \vspace{0.8cm}
 
 \section{Objetivo}
-O objetivo desta atividade é consolidar o aprendizado das tecnologias front-end (\textbf{HTML, CSS e JS}) através do desenvolvimento de uma interface completa, responsiva e funcional. Os estudantes deverão aplicar conceitos de semântica, layouts modernos (Flexbox/Grid) e manipulação do DOM.
+Consolidar o aprendizado das tecnologias front-end (\textbf{HTML, CSS e JS}) através do desenvolvimento de uma interface completa, utilizando o framework \textbf{Bootstrap} para agilidade no layout, mantendo o foco em boas práticas de estruturação e interatividade.
 
-\section{Orientações e Requisitos}
+\section{Orientações e Requisitos de Construção}
+Para garantir a organização e a qualidade técnica do projeto, os seguintes requisitos devem ser seguidos:
+
 \begin{itemize}
-    \item \textbf{Formato:} Duplas (ou trios, sob consulta).
-    \item \textbf{Versionamento:} Repositório no GitHub obrigatório para a dupla.
-    \item \textbf{Tecnologias:} Proibido o uso de frameworks CSS (Bootstrap, Tailwind). Foco em Vanilla CSS.
-    \item \textbf{Responsividade:} A interface deve ser \textit{Mobile-First}.
+    \item \textbf{Estrutura de Conteúdo:} A página principal deve ser organizada em, no máximo, \textbf{4 seções principais} (ex: Hero, Serviços, Galeria, Contato).
+    \item \textbf{Hierarquia de Profundidade:} Cada seção deve respeitar até \textbf{3 níveis de profundidade} estrutural (ex: \texttt{Section} $\rightarrow$ \texttt{Row/Container} $\rightarrow$ \texttt{Cards/Elements}).
+    \item \textbf{Framework e Layout:} Está liberado o uso do \textbf{Bootstrap}. Recomenda-se a adoção do \textbf{modelo de Cards} (visto em sala) para a exibição de itens repetitivos (produtos, serviços, membros da equipe).
+    \item \textbf{Navegação:} É obrigatória a inclusão de um \textbf{Menu Superior (Navbar)} fixo ou responsivo, contendo links para as seções da página (âncoras) ou páginas internas.
 \end{itemize}
 
-\section{Sugestões de Temáticas}
+\section{Estrutura de Diretórios Sugerida}
+Mantenha o projeto organizado seguindo o padrão profissional abaixo:
 
-Escolha um dos grandes temas abaixo. Você pode optar por uma das sub-temáticas sugeridas ou propor algo similar dentro do tema:
+\begin{boxCodigo}
+\begin{verbatim}
+projeto-final/
+├── index.html          (Página principal)
+├── css/
+│   └── style.css       (Estilos personalizados além do Bootstrap)
+├── js/
+│   └── script.js      (Lógica DOM e interações)
+└── assets/
+    ├── img/           (Imagens e ícones)
+    └── docs/          (Documentação opcional)
+\end{verbatim}
+\end{boxCodigo}
+
+\section{Dicas para Início da Construção}
+\begin{boxAtividade}[Checklist Inicial]
+\begin{enumerate}
+    \item \textbf{Mockup/Esboço:} Desenhe no papel ou em ferramenta digital (Figma) as 4 seções antes de codar.
+    \item \textbf{Navbar First:} Comece pelo menu. Ele ajuda a definir o esqueleto da navegação.
+    \item \textbf{Cards Reutilizáveis:} Crie um modelo de card com Bootstrap e utilize o JavaScript ou apenas replicação HTML para popular a seção de conteúdo.
+    \item \textbf{Bootstrap Grid:} Lembre-se de usar as classes \texttt{.container}, \texttt{.row} e \texttt{.col} para garantir que o layout não "quebre" em telas menores.
+\end{enumerate}
+\end{boxAtividade}
+
+\newpage
+\section{Sugestões de Temáticas}
 
 \begin{enumerate}[label=\textbf{Tema \arabic*:}, leftmargin=2cm]
     \item \textbf{Turismo e Lazer (Foco Garopaba)}
@@ -189,12 +231,12 @@ Escolha um dos grandes temas abaixo. Você pode optar por uma das sub-temáticas
 \end{enumerate}
 
 \section{Critérios de Avaliação}
-\begin{boxAtividade}[Checklist de Entrega]
+\begin{boxAtividade}[Critérios Técnicos]
 \begin{itemize}
-    \item \textbf{Semântica (2.0):} Uso correto de \texttt{nav, main, section, footer, article}.
-    \item \textbf{Design CSS (3.0):} Uso de Flexbox/Grid, variáveis, cores e tipografia harmônica.
-    \item \textbf{Responsividade (2.5):} Funcionamento impecável em celular e desktop.
-    \item \textbf{Interatividade JS (2.5):} Manipulação do DOM (ex: filtros, modais, validações).
+    \item \textbf{Estrutura e Organização (2.0):} Indentação, semântica HTML e hierarquia de seções.
+    \item \textbf{Layout e Bootstrap (3.0):} Uso eficiente do Grid e componentes (Navbar e Cards).
+    \item \textbf{Responsividade (2.5):} Funcionamento Mobile-First sem quebras de layout.
+    \item \textbf{Interatividade JS (2.5):} Manipulação do DOM para dinamismo na interface.
 \end{itemize}
 \end{boxAtividade}
 
