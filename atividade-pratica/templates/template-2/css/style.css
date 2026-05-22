@@ -99,11 +99,11 @@ body {
 }
 
 /* =========================================
-   CARDS (GRID SYSTEM)
+   CARDS (FLEXBOX)
    ========================================= */
 .grid-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -116,6 +116,7 @@ body {
 
 .stat-card {
     text-align: center;
+    flex: 1 1 200px; /* Flexbox para ajustar cards em linha com wrap */
 }
 
 .stat-card h4 {
