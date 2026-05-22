@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template 2 - Menu Lateral (Dashboard)</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Nível 1: Estrutura Principal Flex (Sidebar + Main) -->
+    <div class="layout-container">
+
+        <!-- Nível 2: Menu Lateral -->
+        <aside class="sidebar">
+            <div class="logo">AppPainel</div>
+            <nav>
+                <ul>
+                    <li><a href="#resumo" class="ativo">Resumo</a></li>
+                    <li><a href="#estatisticas">Estatísticas</a></li>
+                    <li><a href="#cadastro">Novo Cadastro</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Nível 2: Conteúdo Principal -->
+        <main class="content">
+            
+            <header class="topbar">
+                <h2>Área do Usuário</h2>
+                <div class="user-info">Bem-vindo, Admin</div>
+            </header>
+
+            <!-- Nível 3: Resumo -->
+            <section id="resumo" class="secao-dashboard">
+                <h3>Visão Geral</h3>
+                <div class="grid-cards">
+                    <article class="card stat-card">
+                        <h4>Acessos</h4>
+                        <p class="numero">1.250</p>
+                    </article>
+                    <article class="card stat-card">
+                        <h4>Novos Cadastros</h4>
+                        <p class="numero">45</p>
+                    </article>
+                    <article class="card stat-card">
+                        <h4>Ativos</h4>
+                        <p class="numero">890</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Nível 3: Formulário de Cadastro -->
+            <section id="cadastro" class="secao-dashboard mt-4">
+                <h3>Adicionar Novo Item</h3>
+                
+                <div class="card form-card">
+                    <form id="formCadastro">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="titulo">Título do Item:</label>
+                                <input type="text" id="titulo" name="titulo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="categoria">Categoria:</label>
+                                <select id="categoria" name="categoria">
+                                    <option value="A">Categoria A</option>
+                                    <option value="B">Categoria B</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Prioridade:</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="prioridade" value="baixa" checked> Baixa</label>
+                                <label><input type="radio" name="prioridade" value="alta"> Alta</label>
+                            </div>
+                        </div>
+
+                        <button type="button" id="btnSalvar" class="btn btn-sucesso">Salvar Cadastro</button>
+                        <p id="msg-retorno" class="hidden"></p>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

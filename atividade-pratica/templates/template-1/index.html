@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template 1 - Navbar Superior Clássica</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Nível 1: Header e Menu Superior -->
+    <header id="menu-superior">
+        <div class="logo">MinhaMarca</div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Nível 1: Conteúdo Principal -->
+    <main>
+        
+        <!-- Nível 2: Seção 1 - Hero -->
+        <section id="inicio" class="hero">
+            <h1>Bem-vindo ao Nosso Projeto</h1>
+            <p>Este é o Template 1 com menu superior clássico e layout baseado em seções contínuas.</p>
+        </section>
+
+        <!-- Nível 2: Seção 2 - Cards de Serviços -->
+        <section id="servicos" class="secao-cards">
+            <h2>Nossos Serviços</h2>
+            <div class="cards-container">
+                <!-- Nível 3: Card individual -->
+                <article class="card">
+                    <h3>Serviço A</h3>
+                    <p>Descrição curta sobre o serviço A para atrair o cliente.</p>
+                    <button class="btn">Saiba mais</button>
+                </article>
+                <article class="card">
+                    <h3>Serviço B</h3>
+                    <p>Descrição curta sobre o serviço B para atrair o cliente.</p>
+                    <button class="btn">Saiba mais</button>
+                </article>
+                <article class="card">
+                    <h3>Serviço C</h3>
+                    <p>Descrição curta sobre o serviço C para atrair o cliente.</p>
+                    <button class="btn">Saiba mais</button>
+                </article>
+            </div>
+        </section>
+
+        <!-- Nível 2: Seção 3 - Formulário -->
+        <section id="contato" class="secao-form">
+            <h2>Entre em Contato</h2>
+            <form id="meuFormulario" class="card-form">
+                <div class="form-group">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="assunto">Assunto:</label>
+                    <select id="assunto" name="assunto">
+                        <option value="duvida">Dúvida</option>
+                        <option value="orcamento">Orçamento</option>
+                        <option value="sugestao">Sugestão</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                <p id="formFeedback" class="feedback-msg"></p>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Nível 1: Rodapé -->
+    <footer>
+        <p>&copy; 2026 Meu Projeto. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
