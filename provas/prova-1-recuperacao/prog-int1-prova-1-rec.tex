@@ -1,0 +1,202 @@
+\documentclass[12pt,a4paper]{article}
+
+% =====================================================
+% PACOTES
+% =====================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{newtxtext,newtxmath}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{tabularx}
+
+% Toggle para o Gabarito (false = prova aluno, true = gabarito professor)
+\newtoggle{gabarito}
+\settoggle{gabarito}{false}
+
+\geometry{
+    top=1.5cm,
+    bottom=2cm,
+    left=1.5cm,
+    right=1.5cm
+}
+
+\onehalfspacing
+
+% =====================================================
+% CORES PERSONALIZADAS
+% =====================================================
+\definecolor{azulTitulo}{RGB}{30,60,90}
+\definecolor{corGabarito}{RGB}{180,50,50}
+
+% --- COMANDOS PARA O GABARITO ---
+\newcommand{\correto}[1]{\iftoggle{gabarito}{\textcolor{corGabarito}{\textbf{#1}}}{#1}}
+\newcommand{\justificativa}[1]{%
+\vspace{0.1cm}\par\noindent\framebox[\linewidth]{%
+\parbox[c][1.2cm][t]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+\vspace{0.1cm}\textbf{Justificativa para falsa: }\iftoggle{gabarito}{\textcolor{corGabarito}{#1}}{}\vspace{0.1cm}%
+}%
+}%
+}
+\newcommand{\resp}[1]{\iftoggle{gabarito}{\textcolor{corGabarito}{\textbf{#1}}}{\phantom{#1}}}
+
+\begin{document}
+
+\noindent
+\makebox[\textwidth]{Aluno(a): \dotfill Data: \_\_/\_\_/\_\_\_\_}
+
+\vspace{0.3cm}
+\begin{center}
+    \textbf{\Large Prova de Recuperação Teórica de Programação para Internet 1}\\
+    \textbf{CST em Sistemas para Internet}
+\end{center}
+
+\noindent
+\textbf{Orientações:} Prova individual. Responda com clareza. Nas questões de Verdadeiro ou Falso, justifique as falsas.
+
+\vspace{0.3cm}
+\noindent
+\textbf{Gabarito.} Preencha cada célula com a letra da opção correta, ou V/F/Sequência.
+
+\vspace{0.2cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|*{10}{c|}}
+\hline
+01 & 02 & 03 & 04 & 05 & 06 & 07 & 08 & \hspace{0.4cm}09\hspace{0.4cm} & 10 \\
+\hline
+\iftoggle{gabarito}{
+ \textcolor{corGabarito}{B} & \textcolor{corGabarito}{A} & \textcolor{corGabarito}{C} & \textcolor{corGabarito}{C} & \textcolor{corGabarito}{F} & \textcolor{corGabarito}{V} & \textcolor{corGabarito}{F} & \textcolor{corGabarito}{V} & \textcolor{corGabarito}{2143} & \textcolor{corGabarito}{B}
+}{
+ & & & & & & & & & 
+} \\
+\hline
+\end{tabular}
+\end{center}
+\vspace{0.1cm}
+\noindent\small\textit{* Questão 9 é de relacionar colunas.}
+
+\vspace{0.4cm}
+
+\begin{multicols}{2}
+
+\textbf{1.} Qual tag semântica do HTML5 deve ser utilizada para agrupar links de navegação interna ou externa, definindo a estrutura de menus ou sumários do site?
+\begin{enumerate}[label=(\alph*)]
+    \item \texttt{<section>}
+    \item \correto{\texttt{<nav>}}
+    \item \texttt{<header>}
+    \item \texttt{<aside>}
+\end{enumerate}
+
+\vspace{0.2cm}
+\textbf{2.} Ao trabalhar com o modelo Flexbox no CSS, qual propriedade deve ser aplicada ao elemento pai (container) para fazer com que os itens filhos quebrem para a linha seguinte caso não caibam no espaço horizontal disponível?
+\begin{enumerate}[label=(\alph*)]
+    \item \correto{\texttt{flex-wrap: wrap;}}
+    \item \texttt{flex-direction: column;}
+    \item \texttt{justify-content: space-between;}
+    \item \texttt{display: grid;}
+\end{enumerate}
+
+\vspace{0.2cm}
+\textbf{3.} No JavaScript, como capturamos o valor digitado pelo usuário em um campo \texttt{<input id="nome">}?
+\begin{enumerate}[label=(\alph*)]
+    \item \texttt{document.getElementById("nome").textContent}
+    \item \texttt{document.getElementById("nome").innerHTML}
+    \item \correto{\texttt{document.getElementById("nome").value}}
+    \item \texttt{document.getElementById("nome").type}
+\end{enumerate}
+
+\vspace{0.2cm}
+\textbf{4.} Para que serve a função global \texttt{fetch()} no JavaScript moderno?
+\begin{enumerate}[label=(\alph*)]
+    \item Para formatar e aplicar estilos CSS de forma automática na página.
+    \item Para declarar variáveis locais constantes.
+    \item \correto{Para realizar requisições HTTP assíncronas sem recarregar a página.}
+    \item Para criar um banco de dados local na memória do navegador.
+\end{enumerate}
+
+\vspace{0.2cm}
+\textbf{5. [V/F]} ( ) A propriedade de medida relativa \texttt{em} no CSS calcula seu valor com base no tamanho da fonte do elemento raiz do documento (a tag \texttt{<html>}), sendo ideal para criar dimensionamentos globais responsivos.
+\justificativa{Falso. A unidade relativa ao elemento raiz é o \texttt{rem} (\textit{root em}). O \texttt{em} é relativo ao tamanho de fonte do próprio elemento ou do elemento pai imediato.}
+
+\vspace{0.2cm}
+\textbf{6. [V/F]} ( ) No JavaScript, podemos alterar a cor de fundo de um elemento no DOM modificando a propriedade \texttt{style.backgroundColor} (ex: \texttt{el.style.backgroundColor = "blue"}).
+\justificativa{Verdadeiro.}
+
+\vspace{0.2cm}
+\textbf{7. [V/F]} ( ) A função \texttt{fetch()} no JavaScript rejeita automaticamente a sua Promise correspondente (caindo no bloco \texttt{.catch()}) sempre que o servidor responde com um código de erro HTTP do tipo \texttt{404} (Não Encontrado) ou \texttt{500} (Erro Interno).
+\justificativa{Falso. O \texttt{fetch()} só rejeita a Promise em caso de falha de rede/conexão ou bloqueio de CORS. Erros HTTP como 404 e 500 resolvem a Promise com sucesso, sendo necessário verificar a propriedade \texttt{response.ok} ou \texttt{response.status} no \texttt{.then()}.}
+
+\vspace{0.2cm}
+\textbf{8. [V/F]} ( ) O evento do tipo \texttt{submit} no JavaScript é disparado em um elemento de formulário (\texttt{<form>}) sempre que o usuário tenta enviá-lo, por exemplo, ao clicar em um botão \texttt{<button type="submit">} contido no formulário.
+\justificativa{Verdadeiro.}
+
+\vspace{0.2cm}
+\textbf{9. [Sequência]} Associe a Coluna A (Seletor/Pseudo-classe CSS) com a Coluna B (Descrição de funcionamento).
+\begin{enumerate}[label=(\arabic*), leftmargin=*]
+    \item \texttt{.card:hover}
+    \item \texttt{div > p}
+    \item \texttt{input[type="submit"]}
+    \item \texttt{\#destaque}
+\end{enumerate}
+\vspace{-0.2cm}
+\textbf{Coluna B:}
+\begin{itemize}[leftmargin=*, label={}]
+    \item ( \resp{2} ) Seleciona qualquer parágrafo (\texttt{<p>}) que seja um filho direto de um container \texttt{<div>}.
+    \item ( \resp{1} ) Aplica estilos a um elemento da classe \texttt{card} somente quando o cursor do mouse estiver posicionado sobre ele.
+    \item ( \resp{4} ) Seleciona o único elemento da página que possui a identificação exclusiva \texttt{id="destaque"}.
+    \item ( \resp{3} ) Seleciona elementos de entrada do tipo formulário cujo atributo \texttt{type} seja exatamente "submit".
+\end{itemize}
+
+\end{multicols}
+
+\vspace{0.3cm}
+\hrule
+\vspace{0.3cm}
+\textbf{10.} Analise o trecho de código JavaScript abaixo:
+
+\begin{verbatim}
+const botaoAdd = document.querySelector('#btn-adicionar');
+const inputTarefa = document.querySelector('#nova-tarefa');
+const listaTarefas = document.querySelector('#lista');
+
+botaoAdd.addEventListener('click', () => {
+    const texto = inputTarefa.value.trim();
+    
+    if (texto !== '') {
+        const item = document.createElement('li');
+        item.textContent = texto;
+        
+        item.addEventListener('click', () => {
+            item.classList.toggle('concluida');
+        });
+        
+        listaTarefas.appendChild(item);
+        inputTarefa.value = '';
+    }
+});
+\end{verbatim}
+
+Supondo que no HTML existam os elementos com seletores corretos, qual será o comportamento do sistema quando um usuário digitar "Estudar JS", clicar no botão de adicionar e, em seguida, clicar sobre o texto adicionado na lista?
+\begin{enumerate}[label=(\alph*)]
+    \item O texto "Estudar JS" será adicionado à lista e, ao ser clicado, será removido de forma definitiva do DOM da página.
+    \item \correto{O texto "Estudar JS" será inserido na lista e, ao receber o clique, terá a classe CSS "concluida" alternada (adicionada ou removida), possibilitando estilização visual dinâmica.}
+    \item O código apresentará um erro de execução porque o evento de clique no item de lista (\texttt{li}) foi registrado após a criação do elemento.
+    \item O texto será adicionado, mas o campo de input de texto não será limpo.
+\end{enumerate}
+
+\vfill
+\begin{center}
+    \footnotesize \textit{IFSC Campus Garopaba -- Prof. André Moraes}
+\end{center}
+
+\end{document}
