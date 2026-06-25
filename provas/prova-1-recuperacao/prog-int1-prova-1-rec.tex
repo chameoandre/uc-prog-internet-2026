@@ -24,13 +24,13 @@
 \settoggle{gabarito}{false}
 
 \geometry{
-    top=1.5cm,
-    bottom=2cm,
-    left=1.5cm,
-    right=1.5cm
+    top=1.2cm,
+    bottom=1.2cm,
+    left=1.2cm,
+    right=1.2cm
 }
 
-\onehalfspacing
+\setstretch{1.2}
 
 % =====================================================
 % CORES PERSONALIZADAS
@@ -61,15 +61,11 @@
 \end{center}
 
 \noindent
-\textbf{Orientações:} Prova individual. Responda com clareza. Nas questões de Verdadeiro ou Falso, justifique as falsas.
+\textbf{Orientações:} Prova individual. Responda com clareza. Nas questões de V/F, justifique as falsas. *Questão 9 é de relacionar colunas. Preencha cada célula do gabarito com a opção correta.
 
-\vspace{0.3cm}
-\noindent
-\textbf{Gabarito.} Preencha cada célula com a letra da opção correta, ou V/F/Sequência.
-
-\vspace{0.2cm}
+\vspace{0.1cm}
 \begin{center}
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.3}
 \begin{tabular}{|*{10}{c|}}
 \hline
 01 & 02 & 03 & 04 & 05 & 06 & 07 & 08 & \hspace{0.4cm}09\hspace{0.4cm} & 10 \\
@@ -82,10 +78,8 @@
 \hline
 \end{tabular}
 \end{center}
-\vspace{0.1cm}
-\noindent\small\textit{* Questão 9 é de relacionar colunas.}
 
-\vspace{0.4cm}
+\vspace{0.2cm}
 
 \begin{multicols}{2}
 
@@ -159,11 +153,11 @@
 
 \end{multicols}
 
-\vspace{0.3cm}
+\vspace{0.1cm}
 \hrule
-\vspace{0.3cm}
+\vspace{0.1cm}
 \textbf{10.} Analise o trecho de código JavaScript abaixo:
-
+\begin{small}
 \begin{verbatim}
 const botaoAdd = document.querySelector('#btn-adicionar');
 const inputTarefa = document.querySelector('#nova-tarefa');
@@ -171,20 +165,18 @@ const listaTarefas = document.querySelector('#lista');
 
 botaoAdd.addEventListener('click', () => {
     const texto = inputTarefa.value.trim();
-    
     if (texto !== '') {
         const item = document.createElement('li');
         item.textContent = texto;
-        
         item.addEventListener('click', () => {
             item.classList.toggle('concluida');
         });
-        
         listaTarefas.appendChild(item);
         inputTarefa.value = '';
     }
 });
 \end{verbatim}
+\end{small}
 
 Supondo que no HTML existam os elementos com seletores corretos, qual será o comportamento do sistema quando um usuário digitar "Estudar JS", clicar no botão de adicionar e, em seguida, clicar sobre o texto adicionado na lista?
 \begin{enumerate}[label=(\alph*)]
