@@ -1,0 +1,195 @@
+\documentclass[12pt,a4paper]{article}
+
+% =====================================================
+% PACOTES
+% =====================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{newtxtext,newtxmath}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{tabularx}
+
+% Toggle para o Gabarito (false = prova aluno, true = gabarito professor)
+\newtoggle{gabarito}
+\settoggle{gabarito}{false}
+
+\geometry{
+    top=1.5cm,
+    bottom=2cm,
+    left=1.5cm,
+    right=1.5cm
+}
+
+\onehalfspacing
+
+% =====================================================
+% CORES PERSONALIZADAS
+% =====================================================
+\definecolor{azulTitulo}{RGB}{30,60,90}
+\definecolor{corGabarito}{RGB}{180,50,50}
+
+% --- COMANDOS PARA O GABARITO ---
+\newcommand{\correto}[1]{\iftoggle{gabarito}{\textcolor{corGabarito}{\textbf{#1}}}{#1}}
+\newcommand{\justificativa}[1]{%
+\vspace{0.1cm}\par\noindent\framebox[\linewidth]{%
+\parbox[c][1.2cm][t]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+\vspace{0.1cm}\textbf{Justificativa para falsa: }\iftoggle{gabarito}{\textcolor{corGabarito}{#1}}{}\vspace{0.1cm}%
+}%
+}%
+}
+\newcommand{\resp}[1]{\iftoggle{gabarito}{\textcolor{corGabarito}{\textbf{#1}}}{\phantom{#1}}}
+
+\begin{document}
+
+\noindent
+\makebox[\textwidth]{Aluno(a): \dotfill Data: \_\_/\_\_/\_\_\_\_}
+
+\vspace{0.3cm}
+\begin{center}
+    \textbf{\Large Prova Teórica de Programação para Internet 1}\\
+    \textbf{CST em Sistemas para Internet}
+\end{center}
+
+\noindent
+\textbf{Orientações:} Prova individual. Responda com clareza. Nas questões de Verdadeiro ou Falso, justifique as falsas.
+
+\vspace{0.3cm}
+\noindent
+\textbf{Gabarito.} Preencha cada célula com a letra da opção correta, ou V/F/Sequência.
+
+\vspace{0.2cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|*{10}{c|}}
+\hline
+01 & 02 & 03 & 04 & 05 & 06 & 07 & 08 & \hspace{0.4cm}09\hspace{0.4cm} & 10 \\
+\hline
+\iftoggle{gabarito}{
+ \textcolor{corGabarito}{B} & \textcolor{corGabarito}{A} & \textcolor{corGabarito}{C} & \textcolor{corGabarito}{C} & \textcolor{corGabarito}{F} & \textcolor{corGabarito}{V} & \textcolor{corGabarito}{F} & \textcolor{corGabarito}{F} & \textcolor{corGabarito}{3412} & \textcolor{corGabarito}{B}
+}{
+ & & & & & & & & & 
+} \\
+\hline
+\end{tabular}
+\end{center}
+\vspace{0.1cm}
+\noindent\small\textit{* Questão 9 é de relacionar colunas.}
+
+\vspace{0.4cm}
+
+\begin{multicols}{2}
+
+\textbf{1.} Qual tag semântica do HTML5 deve ser utilizada para englobar o conteúdo principal e exclusivo de uma página, excluindo cabeçalhos, rodapés e menus de navegação globais?
+\begin{enumerate}[label=(\alph*)]
+    \item \texttt{<section>}
+    \item \correto{\texttt{<main>}}
+    \item \texttt{<article>}
+    \item \texttt{<header>}
+\end{enumerate}
+
+\vspace{0.2cm}
+\textbf{2.} Sobre a diferença fundamental entre CSS Grid e Flexbox, assinale a alternativa \textbf{CORRETA}:
+\begin{enumerate}[label=(\alph*)]
+    \item \correto{O CSS Grid foi projetado para layouts bidimensionais (linhas e colunas), enquanto o Flexbox foi projetado primariamente para layouts unidimensionais (uma linha ou coluna por vez).}
+    \item Flexbox requer que o elemento pai tenha altura fixa, enquanto o Grid ajusta-se automaticamente.
+    \item CSS Grid substituiu completamente o Flexbox, tornando-o obsoleto em navegadores modernos.
+    \item O Flexbox utiliza \texttt{grid-template-columns} para alinhar elementos verticalmente.
+\end{enumerate}
+
+\vspace{0.2cm}
+\textbf{3.} No JavaScript, qual método é a forma mais recomendada e moderna para adicionar um "escutador" de eventos a um botão selecionado, para executar uma função ao ser clicado?
+\begin{enumerate}[label=(\alph*)]
+    \item \texttt{button.onclick = function() \{ ... \}}
+    \item \texttt{button.listenEvent("click", function() \{ ... \})}
+    \item \correto{\texttt{button.addEventListener("click", function() \{ ... \})}}
+    \item \texttt{<button onclick="function()">} diretamente no HTML
+\end{enumerate}
+
+\vspace{0.2cm}
+\textbf{4.} Qual é o principal retorno da função \texttt{fetch()} no JavaScript antes de receber os dados efetivos da requisição?
+\begin{enumerate}[label=(\alph*)]
+    \item Uma string no formato JSON.
+    \item Uma matriz contendo os objetos da API.
+    \item \correto{Uma \textit{Promise} (promessa) que representará a resposta HTTP no futuro.}
+    \item Um erro temporário de bloqueio (\textit{blocking error}).
+\end{enumerate}
+
+\vspace{0.2cm}
+\textbf{5. [V/F]} ( ) A propriedade \texttt{margin} do CSS adiciona espaço interno a um elemento, afastando o conteúdo das bordas da própria caixa.
+\justificativa{Falso. O \texttt{margin} adiciona espaço EXTERNO (entre a borda e outros elementos). O espaço INTERNO é o \texttt{padding}.}
+
+\vspace{0.2cm}
+\textbf{6. [V/F]} ( ) Variáveis declaradas com \texttt{let} e \texttt{const} possuem escopo de bloco, significando que não podem ser acessadas fora do bloco (\texttt{\{ ... \}}) onde foram definidas.
+\justificativa{Verdadeiro.}
+
+\vspace{0.2cm}
+\textbf{7. [V/F]} ( ) O método \texttt{document.getElementById()} é mais moderno e flexível que o \texttt{document.querySelector()}, pois permite selecionar elementos por qualquer seletor CSS, como classes (\texttt{.classe}) ou tags.
+\justificativa{Falso. O método \texttt{getElementById()} busca apenas por um ID específico. O método mais moderno e flexível é o \texttt{querySelector()}, que aceita qualquer seletor CSS.}
+
+\vspace{0.2cm}
+\textbf{8. [V/F]} ( ) O método \texttt{document.querySelectorAll()} retorna o primeiro elemento HTML que corresponda ao seletor CSS fornecido.
+\justificativa{Falso. Ele retorna uma lista (NodeList) com TODOS os elementos que correspondem ao seletor. O método que retorna apenas o primeiro é o \texttt{querySelector()}.}
+
+\vspace{0.2cm}
+\textbf{9. [Sequência]} Associe a Coluna A (Método) com a Coluna B (Descrição correta da sua função).
+\begin{enumerate}[label=(\arabic*), leftmargin=*]
+    \item \texttt{document.createElement('div')}
+    \item \texttt{elemento.appendChild(novoElemento)}
+    \item \texttt{response.json()}
+    \item \texttt{elemento.classList.add('ativo')}
+\end{enumerate}
+\vspace{-0.2cm}
+\textbf{Coluna B:}
+\begin{itemize}[leftmargin=*, label={}]
+    \item ( \resp{3} ) Transforma o fluxo de resposta da requisição \textit{Fetch} em um objeto JavaScript utilizável.
+    \item ( \resp{4} ) Adiciona uma classe CSS a um nó do DOM, possibilitando mudança visual sem reescrever atributos de estilo diretamente.
+    \item ( \resp{1} ) Cria um novo nó de elemento HTML em memória, que ainda não está visível na tela.
+    \item ( \resp{2} ) Insere um nó de elemento no final da lista de filhos de um nó pai especificado, renderizando-o na tela.
+\end{itemize}
+
+\end{multicols}
+
+\vspace{0.3cm}
+\hrule
+\vspace{0.3cm}
+\textbf{10.} Analise o trecho de código JavaScript abaixo:
+
+\begin{verbatim}
+const divResultado = document.querySelector('#resultado');
+
+fetch('https://api.exemplo.com/usuario/1')
+  .then(resposta => resposta.json())
+  .then(dados => {
+      const paragrafo = document.createElement('p');
+      paragrafo.innerText = `Nome: ${dados.nome}`;
+      divResultado.appendChild(paragrafo);
+  })
+  .catch(erro => {
+      console.log('Ocorreu um erro');
+  });
+\end{verbatim}
+
+Supondo que no HTML exista a \texttt{div} correspondente e a requisição seja um sucesso (retornando um JSON \texttt{\{"nome": "Maria"\}}), o que o usuário veria aparecer na tela?
+\begin{enumerate}[label=(\alph*)]
+    \item Um alerta (\texttt{alert}) pop-up escrito "Nome: Maria".
+    \item \correto{Um novo parágrafo na página contendo o texto "Nome: Maria".}
+    \item Apenas a string \texttt{"Nome: Maria"} exibida no \textit{Console} do navegador.
+    \item A página seria recarregada e mostraria o arquivo JSON bruto.
+\end{enumerate}
+
+\vfill
+\begin{center}
+    \footnotesize \textit{IFSC Campus Garopaba -- Prof. André Moraes}
+\end{center}
+
+\end{document}
